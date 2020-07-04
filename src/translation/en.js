@@ -1,13 +1,30 @@
 const formfields = {
     email: 'Email',
     password: 'Password',
+    fullName: 'Full Name',
+    username: 'Username',
 }
 
 module.exports = {
     email: 'Email',
+    fullName: 'Full Name',
+    username: 'Username',
     password: 'Password',
     login: 'Log In',
+    register: 'Register',
+    educator: 'Educator',
+    educators: 'Educators',
+    categories: 'Categories',
+    trends: 'Trends',
+    'Find a new course': 'Find a new course',
+    'Be educator': 'Be educator',
+    or: 'ya da',
 
+    messages: {
+      'Login successful': 'Login successful',
+      'Register successful': 'Register successful'
+    },
+    
     form: {
         default: (name) => `Validation error on field ${formfields[name]}`,
         required: (name) => `${formfields[name]} is required`,

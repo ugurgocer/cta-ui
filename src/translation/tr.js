@@ -2,13 +2,30 @@
 const formfields = {
     email: 'E-Posta',
     password: 'Şifre',
+    fullName: 'Tam Ad',
+    username: 'Kullanıcı Adı',
 }
 
 module.exports = {
     email: 'E-Posta',
     password: 'Şifre',
-    login: 'Giriş Yap',
+    fullName: 'Tam Ad',
+    username: 'Kullanıcı Adı',
+    login: 'Giriş Yap', 
+    register: 'Kayıt Ol',
+    educator: 'Eğitmen',
+    educators: 'Eğitmenler',
+    categories: "Kategoriler",
+    trends: 'Trendler',
+    'Find a new course': 'Yeni bir kurs bul',
+    'Be educator': 'Eğitmen Ol',
+    or: 'ya da',
 
+    messages: {
+      'Login successful': 'Giriş başarılı',
+      'Register successful': 'Kayıt başarılı'
+    },
+    
     form: {
         default: (name) => `${formfields[name]} alanında doğrulama hatası`,
         required: (name) => `${formfields[name]} alanı gereklidir!`,

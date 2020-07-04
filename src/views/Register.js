@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import { useMutation } from '@apollo/react-hooks'
 import { Row, Col, message } from 'antd'
-import LoginForm from './../components/Login.form'
+import RegisterForm from './../components/Register.form'
 import gql from 'graphql-tag'
 import Localize from './../global/Localize'
 
@@ -32,10 +32,10 @@ const layout = {
     },
 }
 
-const LOGIN = (
+const REGISTER = (
     gql`
-        mutation($login: Login!){
-            login(login: $login){
+        mutation($register: Register!){
+            register(register: $register){
                 token
                 date
                 expiryDate
@@ -46,21 +46,19 @@ const LOGIN = (
 )
 
 const Register = props => {
-    const [login, { data, loading }] = useMutation(LOGIN);
+    const [register, { data, loading, error }] = useMutation(REGISTER);
     const { state } = useContext(Localize)
 
-    const onLogin = async values => {
-        console.log(values)
+    const onRegister = async values => {
         try{
-            values.loginType = 'REGULAR'
-            await login({ variables: { login: values  }})
+            await register({ variables: { register: values  }})
 
-            message.success({ content: state.translation.messages['Login successful'] })
+            message.success({ content: state.translation.messages['Register successful'] })
         }catch(err){
             message.error({ content: err.message })
         }
     }
-
+    
     return (
         <Row style={{ height: "100%", width: "100%", position: "absolute" }} id="login-row">
             <Col {...layout.logo} style={{ position: "absolute"}}>
@@ -71,7 +69,7 @@ const Register = props => {
             <Col {...layout.login} style={{ height: "100%" }}>
                 <Col span={24} className="login-col-before" style={{ height: "33%" }} />
                 <Col span={24} className="login-col" style={{ height: "67%" }}>
-                    <LoginForm onLogin={onLogin} loading={loading}/>
+                    <RegisterForm onRegister={onRegister} loading={loading}/>
                 </Col>
             </Col>
         </Row>

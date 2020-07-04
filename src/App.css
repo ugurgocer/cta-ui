@@ -34,6 +34,10 @@
 }
 
 .ant-btn-primary{
-  background-color: #892983 !important;
-  border-color: #892983 !important;
+  background-color: #5530a1 !important;
+  border-color: #5530a1 !important;
+}
+
+.ant-space-item {
+  margin: auto;
 }

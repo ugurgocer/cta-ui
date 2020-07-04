@@ -1,0 +1,85 @@
+.logo {
+    width: 120px;
+    height: 30px;
+    background: url('./logo.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin: 16px;
+    float: left;
+}
+.site-layout .site-layout-background {
+    background: #fff;
+}
+.ant-layout-header .ant-menu {
+    line-height: 63px !important;
+}
+
+.ant-menu-horizontal {
+    border: none !important;
+}
+
+.ant-layout-header {
+    padding: 0 !important;
+    background-color: #fff !important;
+    box-shadow: 0 0 1px 1px rgba(20,23,28,.1), 0 3px 1px 0 rgba(20,23,28,.1);
+    position: fixed;
+    z-index: 999;
+    width: 100%
+}
+
+.ant-menu-item-selected, .ant-menu-active, .ant-menu-item:hover {
+    color: #5530a1 !important;
+    border-bottom: 2px solid #5530a1 !important;
+}
+
+#user .ant-avatar{
+    cursor: pointer;
+}
+
+@media (min-width: 1200px){
+    #menu ul{
+        margin: 0 auto;
+        width: 400px;
+    }
+}
+
+@media (min-width: 1400px){
+    #logo {
+        flex: 0 0 9.5% !important;
+        max-width: 9.5% !important;
+    }
+
+    #be_educator {
+        display: block;
+        flex: 0 0 9% !important;
+        max-width: 9% !important;
+    }
+}
+
+
+@media (min-width: 1400px) and (max-width: 1600px){
+    #menu {
+        flex: 0 0 29%;
+        max-width: 29%;
+    }
+}
+
+@media (min-width: 1601px){
+    #menu {
+        flex: 0 0 25%;
+        max-width: 25%;
+    }
+
+    #header {
+        width: 90% !important;
+        margin: auto !important;
+    }
+}
+
+@media (min-width: 1030px) and (max-width: 1200px){
+
+    #menu {
+        flex: 0 0 40% !important;
+        max-width: 40% !important;
+    }
+}
