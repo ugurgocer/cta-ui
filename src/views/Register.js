@@ -1,9 +1,12 @@
 import React, { useContext } from 'react'
 import { useMutation } from '@apollo/react-hooks'
-import { Row, Col, message } from 'antd'
-import RegisterForm from './../components/Register.form'
 import gql from 'graphql-tag'
 import Localize from './../global/Localize'
+import Session from './../global/Session'
+
+import { Row, Col, message } from 'antd'
+import RegisterForm from './../components/Register.form'
+import { Redirect } from 'react-router-dom'
 
 import './../asset/login.css'
 
@@ -46,18 +49,24 @@ const REGISTER = (
 )
 
 const Register = props => {
-    const [register, { data, loading, error }] = useMutation(REGISTER);
+    const [register, { data, loading }] = useMutation(REGISTER);
     const { state } = useContext(Localize)
+    const { state: session, dispatch: sessionDispatch } = useContext(Session)
 
     const onRegister = async values => {
         try{
-            await register({ variables: { register: values  }})
+            const result = await register({ variables: { register: values  }})
+            
+            await sessionDispatch({ type: 'login', session: result.data.login })
 
             message.success({ content: state.translation.messages['Register successful'] })
         }catch(err){
             message.error({ content: err.message })
         }
     }
+
+    if(data || (session.token || localStorage.session))
+        return <Redirect to="/" />
     
     return (
         <Row style={{ height: "100%", width: "100%", position: "absolute" }} id="login-row">

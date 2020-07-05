@@ -1,9 +1,12 @@
 import React, { useContext } from 'react'
 import { useMutation } from '@apollo/react-hooks'
-import { Row, Col, message } from 'antd'
-import LoginForm from './../components/Login.form'
 import gql from 'graphql-tag'
 import Localize from './../global/Localize'
+import Session from './../global/Session'
+
+import { Row, Col, message } from 'antd'
+import LoginForm from './../components/Login.form'
+import { Redirect } from 'react-router-dom'
 
 import './../asset/login.css'
 
@@ -45,15 +48,18 @@ const LOGIN = (
     `
 )
 
-const Register = props => {
-    const [login, { data, loading }] = useMutation(LOGIN);
-    const { state } = useContext(Localize)
+const Login = props => {
 
+    const [login, { loading, data }] = useMutation(LOGIN)
+    const { state } = useContext(Localize)
+    const { state: session, dispatch: sessionDispatch } = useContext(Session)
+    
     const onLogin = async values => {
-        console.log(values)
         try{
             values.loginType = 'REGULAR'
-            await login({ variables: { login: values  }})
+
+            const result = await login({ variables: { login: values  }})
+            await sessionDispatch({ type: 'login', session: result.data.login })
 
             message.success({ content: state.translation.messages['Login successful'] })
         }catch(err){
@@ -61,10 +67,14 @@ const Register = props => {
         }
     }
 
+    if(data || (session.token || localStorage.session))
+        return <Redirect to="/" />
+    
     return (
         <Row style={{ height: "100%", width: "100%", position: "absolute" }} id="login-row">
             <Col {...layout.logo} style={{ position: "absolute"}}>
                 <div className="logo" />
+                <span id="slogan">learn coding <br/> step by ctapp</span>
             </Col>
             <Col {...layout.space} />
             <Col {...layout.space} />
@@ -79,4 +89,4 @@ const Register = props => {
 
 }
 
-export default Register
+export default Login

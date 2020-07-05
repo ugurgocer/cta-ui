@@ -1,12 +1,16 @@
 import React from 'react'
-import './App.css'
+
 import { ConfigProvider } from 'antd'
-import Login from './views/Login'
-import Register from './views/Register'
 import ContextProvider from './global/index'
-import { BrowserRouter, Switch, Route } from "react-router-dom"
 import { ApolloProvider } from '@apollo/react-hooks'
 import client from './utils/apolloClient'
+
+import { BrowserRouter, Switch, Route } from "react-router-dom"
+import Login from './views/Login'
+import Register from './views/Register'
+import Layout from './views/Layout'
+
+import './App.css'
 import 'antd/dist/antd.css'
 
 const App = () => {
@@ -16,11 +20,11 @@ const App = () => {
 				<ContextProvider>
 					<ConfigProvider locale="tr">
 						<BrowserRouter>
-							
 							<div>
 								<Switch>
+									<Route exact path="/" component={Layout} />
 									<Route path="/login" component={Login} />
-									<Route path="/register" component={Register} />
+									<Route path="/register" component={Register} />						
 								</Switch>
 							</div>
 						</BrowserRouter>

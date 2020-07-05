@@ -1,9 +1,16 @@
 import React, { useContext } from 'react'
-import { Layout, Menu, Breadcrumb, Row, Col, Avatar } from 'antd'
 import Localize from './../global/Localize'
+import Session from './../global/Session'
+import { useQuery } from '@apollo/react-hooks'
+import gql from 'graphql-tag'
+import moment from 'moment'
+
+import { Layout, Menu, Breadcrumb, Row, Col, Avatar, message } from 'antd'
+import SearchBox from '../components/SearchBox'
+import { Redirect } from 'react-router-dom'
+
 import { FaChalkboardTeacher, FaRegUserCircle } from 'react-icons/fa'
 import { BsFillGridFill, BsFillStarFill } from 'react-icons/bs'
-import SearchBox from '../components/SearchBox'
 
 import '../asset/layout.css'
 
@@ -52,9 +59,37 @@ const header_layout = {
     }
 }
 
-const Login = props => {
-    const { state } = useContext(Localize)
+const TOKEN_READ = (
+    gql`
+        {
+            tokenRead{
+                token
+                date
+                expiryDate
+                loginType
+            }
+        }
+    `
+)
 
+const Main = props => {
+    const { state } = useContext(Localize)
+    const { state: session, dispatch: sessionDispatch } = useContext(Session)
+    const { loading, error, data } = useQuery(TOKEN_READ)
+
+    if (loading) return null
+    if (error){
+        sessionDispatch({ type: 'logout' })
+        message.error({ content: error.message })
+        return <Redirect to="/login" />
+    }
+    if(moment() > moment(data.tokenRead.expiryDate)){
+        sessionDispatch({ type: 'logout' })
+        return <Redirect to="/login" />
+    }else
+        if(session.token)
+            sessionDispatch({ type: 'login', session: data.tokenRead })
+    
     const menu = (
         <Menu theme="light" mode="horizontal">
             <Menu.Item key="1" icon={<FaChalkboardTeacher size={18} style={{ verticalAlign: "middle", marginRight: 8 }}/>}>{state.translation.educators}</Menu.Item>
@@ -102,4 +137,4 @@ const Login = props => {
 
 }
 
-export default Login
+export default Main

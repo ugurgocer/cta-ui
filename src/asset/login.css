@@ -55,4 +55,22 @@
     .login-col {
         height: calc(100% - 70px) !important;
     }
+
+    #slogan {
+        position: fixed !important;
+        left: calc(100% - 180px) !important;
+        top: 0 !important;
+    }
+}
+
+#slogan {
+    font-size: large;
+    position: absolute;
+    left: 0px;
+    top: 60px;
+    color: #5530a1;
+    font-weight: 600;
+    text-align: center;
+    width: 180px;
+    margin: 16px;
 }

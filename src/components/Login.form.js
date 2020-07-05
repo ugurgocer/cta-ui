@@ -15,7 +15,6 @@ const LoginForm = props => {
             name="basic"
             validateMessages={state.translation.form}
             onFinish={props.onLogin}
-            onFinishFailed={props.onLogin}
             style={{ width: "100%" }}
         >
             <Form.Item label={state.translation.email} name="email" rules={[{ type: 'email', required: 'true', whitespace: true }]}>
