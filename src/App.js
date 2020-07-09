@@ -9,6 +9,7 @@ import { BrowserRouter, Switch, Route } from "react-router-dom"
 import Login from './views/Login'
 import Register from './views/Register'
 import Layout from './views/Layout'
+import { createBrowserHistory } from 'history'
 
 import './App.css'
 import 'antd/dist/antd.css'
@@ -19,12 +20,12 @@ const App = () => {
 			<ApolloProvider client={client}>
 				<ContextProvider>
 					<ConfigProvider locale="tr">
-						<BrowserRouter>
+						<BrowserRouter history={createBrowserHistory()}>
 							<div>
 								<Switch>
-									<Route exact path="/" component={Layout} />
 									<Route path="/login" component={Login} />
-									<Route path="/register" component={Register} />						
+									<Route path="/register" component={Register} />
+									<Route exact path="/*" component={Layout} />
 								</Switch>
 							</div>
 						</BrowserRouter>

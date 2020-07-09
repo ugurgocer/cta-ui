@@ -41,3 +41,8 @@
 .ant-space-item {
   margin: auto;
 }
+
+.ant-card-head {
+  background-color: #5530a1 !important;
+  color: #fff !important;
+}

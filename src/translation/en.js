@@ -3,6 +3,12 @@ const formfields = {
     password: 'Password',
     fullName: 'Full Name',
     username: 'Username',
+    title: 'Name',
+    description: 'Description',
+    image: 'Image',
+    banner: 'Banner',
+    profilePicture: 'Profile Picture'
+    
 }
 
 module.exports = {
@@ -19,10 +25,24 @@ module.exports = {
     'Find a new course': 'Find a new course',
     'Be educator': 'Be educator',
     or: 'ya da',
-
+    'Educator Panel':'Educator Panel',
+    'Create a course': 'Create a course',
+    'My courses': 'My courses',
+    course: 'Course',
+    course_title: 'Course Title',
+    description: 'Description',
+    save: 'Save',
+    image: 'Image',
+    banner: 'Banner',
+    "Click to Upload": 'Click to Upload',
+    profile_picture: 'Profile Picture',
+    educator_username: 'Educator Username',
+    educator_name: 'Educator Name',
+    
     messages: {
       'Login successful': 'Login successful',
-      'Register successful': 'Register successful'
+      'Register successful': 'Register successful',
+      'Transaction successful': 'Transaction successful',
     },
     
     form: {

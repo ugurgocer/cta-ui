@@ -15,13 +15,12 @@ const reducer = (state, action) => {
     switch(type){
         case 'login':
             localStorage.setItem('session', action.session.token)
-            
             return {
                 ...state,
                 ...action.session
             }
         case 'logout':
-            localStorage.setItem('session', initialState)
+            localStorage.clear()
 
             return initialState
         default:

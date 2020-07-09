@@ -4,6 +4,11 @@ const formfields = {
     password: 'Şifre',
     fullName: 'Tam Ad',
     username: 'Kullanıcı Adı',
+    title: 'Başlık',
+    description: 'Açıklama',
+    image: 'Fotoğraf',
+    banner: 'Afiş',
+    profilePicture: 'Profile Picture'
 }
 
 module.exports = {
@@ -20,10 +25,24 @@ module.exports = {
     'Find a new course': 'Yeni bir kurs bul',
     'Be educator': 'Eğitmen Ol',
     or: 'ya da',
+    'Educator Panel':'Eğitmen Paneli',
+    'Create a course': 'Kurs oluştur',
+    'My courses': 'Kurslarım',
+    course: 'Kurs',
+    course_title: 'Kurs Başlığı',
+    description: 'Açıklama',
+    save: 'Kaydet',
+    image: 'Fotoğraf',
+    banner: 'Afiş',
+    'Click to Upload': 'Yüklemek için tıklayınız',
+    profile_picture: 'Profil Resmi',
+    educator_username: 'Eğitmen Kullanıcı Adı',
+    educator_name: 'Eğitmen Adı',
 
     messages: {
       'Login successful': 'Giriş başarılı',
-      'Register successful': 'Kayıt başarılı'
+      'Register successful': 'Kayıt başarılı',
+      'Transaction successful': 'İşlem başarılı',
     },
     
     form: {

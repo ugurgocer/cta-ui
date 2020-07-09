@@ -50,10 +50,13 @@ const LOGIN = (
 
 const Login = props => {
 
-    const [login, { loading, data }] = useMutation(LOGIN)
+    const [login, { loading }] = useMutation(LOGIN)
     const { state } = useContext(Localize)
-    const { state: session, dispatch: sessionDispatch } = useContext(Session)
+    const { dispatch: sessionDispatch } = useContext(Session)
     
+    if(localStorage.session)
+        return <Redirect to='/' />
+
     const onLogin = async values => {
         try{
             values.loginType = 'REGULAR'
@@ -62,13 +65,12 @@ const Login = props => {
             await sessionDispatch({ type: 'login', session: result.data.login })
 
             message.success({ content: state.translation.messages['Login successful'] })
+
+            props.history.push('/')
         }catch(err){
             message.error({ content: err.message })
         }
     }
-
-    if(data || (session.token || localStorage.session))
-        return <Redirect to="/" />
     
     return (
         <Row style={{ height: "100%", width: "100%", position: "absolute" }} id="login-row">

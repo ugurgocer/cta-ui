@@ -10,7 +10,6 @@ const SearchBox = props => {
     const [ value, setValue ] = useState("")
     const options = []
 
-    console.log(value)
     return (
         <span>
             <AutoComplete
@@ -21,7 +20,7 @@ const SearchBox = props => {
                 notFoundContent={null}
                 options={options}
             >
-                <Input.Search placeholder={state.translation['Find a new course']} enterButton onSearch={() => {console.log(value)}} />
+                <Input.Search placeholder={state.translation['Find a new course']} enterButton onSearch={() => {console.log(value) }} />
             </AutoComplete>
         </span>
 

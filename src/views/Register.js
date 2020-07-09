@@ -49,29 +49,32 @@ const REGISTER = (
 )
 
 const Register = props => {
-    const [register, { data, loading }] = useMutation(REGISTER);
+    const [register, { loading }] = useMutation(REGISTER);
     const { state } = useContext(Localize)
-    const { state: session, dispatch: sessionDispatch } = useContext(Session)
+    const { dispatch: sessionDispatch } = useContext(Session)
+
+    if(localStorage.session)
+        return <Redirect to="/" />
 
     const onRegister = async values => {
         try{
             const result = await register({ variables: { register: values  }})
             
-            await sessionDispatch({ type: 'login', session: result.data.login })
+            await sessionDispatch({ type: 'login', session: result.data.register })
 
             message.success({ content: state.translation.messages['Register successful'] })
+
+            props.history.push('/')
         }catch(err){
             message.error({ content: err.message })
         }
     }
-
-    if(data || (session.token || localStorage.session))
-        return <Redirect to="/" />
     
     return (
         <Row style={{ height: "100%", width: "100%", position: "absolute" }} id="login-row">
             <Col {...layout.logo} style={{ position: "absolute"}}>
-                <div className="logo" />
+                <div className="logo-login" />
+                <span id="slogan">learn coding <br/> step by ctapp</span>
             </Col>
             <Col {...layout.space} />
             <Col {...layout.space} />
