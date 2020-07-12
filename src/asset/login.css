@@ -7,30 +7,6 @@
     margin: 16px;
     float: left;
 }
-.site-layout .site-layout-background {
-    background: #fff;
-}
-.ant-layout-header .ant-menu {
-    line-height: 63px !important;
-}
-
-.ant-menu-horizontal {
-    border: none !important;
-}
-
-.ant-layout-header {
-    padding: 0 !important;
-    background-color: #fff !important;
-    box-shadow: 0 0 1px 1px rgba(20,23,28,.1), 0 3px 1px 0 rgba(20,23,28,.1);
-    position: fixed;
-    z-index: 999;
-    width: 100%
-}
-
-.ant-menu-item-selected, .ant-menu-active, .ant-menu-item:hover {
-    color: #5530a1 !important;
-    border-bottom: 2px solid #5530a1 !important;
-}
 
 .login-col {
     box-shadow: 0 0 1px 1px rgba(20,23,28,.1), 0 3px 1px 0 rgba(20,23,28,.1);
@@ -62,6 +38,7 @@
         top: 0 !important;
     }
 }
+
 
 #slogan {
     font-size: large;

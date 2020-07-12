@@ -5,7 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  overflow: hidden;
+  background-color:  #FCF4FF !important;
 }
 
 code {
@@ -18,7 +18,7 @@ code {
 }
 
 .site-layout-background .ant-layout-sider {
-  height: calc(100% - 188px) !important;
+  height: calc(100% - 135px) !important;
 }
 
 .ant-layout-footer {
@@ -26,4 +26,6 @@ code {
   bottom: 0;
   right: 0;
   left: 0;
+  z-index: 999;
+  box-shadow: 0 0 3px 1px rgba(20,23,28,.1), 3px 3px 3px 0px rgba(20,23,28,.1) !important;
 }

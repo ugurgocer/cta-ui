@@ -4,13 +4,13 @@ import gql from 'graphql-tag'
 import Localize from './../../global/Localize'
 import { compile } from 'path-to-regexp'
 
-import { Card, message } from 'antd'
+import { Modal, message } from 'antd'
 import CourseForm from './../../components/Course.form'
 
-const COURSE_CREATE = (
+const EDIT_COURSE = (
     gql`
-        mutation ($course: CourseCreateInput!) {
-            courseCreate(course: $course) {
+        mutation ($course: CourseUpdateInput!, $id: Int!) {
+            courseUpdate(course: $course, id: $id) {
                 title
                 description
                 seoLink
@@ -27,9 +27,8 @@ const COURSE_CREATE = (
     `
 )
 
-const CreateCourse = props => {
-
-    const [courseCreate, { loading }] = useMutation(COURSE_CREATE)
+const EditCourse = props => {
+    const [editCourse, { loading }] = useMutation(EDIT_COURSE)
     const { state } = useContext(Localize)
 
     const onSubmit = async values => {
@@ -38,14 +37,14 @@ const CreateCourse = props => {
                 url: values.image.url,
                 uid: values.image.uid,
                 response: values.image.response,
-                status: values.image.status,
+                status: values.image.status
             }
 
             delete values.image.xhr
 
             values.image = image
 
-            await courseCreate({ variables: { course: values } })
+            await editCourse({ variables: { course: values, id: props.course.courseId }})
 
             message.success({ content: state.translation.messages['Transaction successful'] })
 
@@ -56,13 +55,18 @@ const CreateCourse = props => {
     }
     
     return (
-        <Card
+        <Modal
             title={state.translation['Create a course']}
+            visible
+            className="modal-action"
+            width="80%"
+            footer={null}
+            onCancel={props.modalClose}
         >
-            <CourseForm onSubmit={onSubmit} loading={loading}/>
-        </Card>
+            <CourseForm onSubmit={onSubmit} loading={loading} initialValues={props.course} />
+        </Modal>
     )
 
 }
 
-export default CreateCourse
+export default EditCourse

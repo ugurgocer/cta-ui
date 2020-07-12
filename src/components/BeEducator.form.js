@@ -45,11 +45,11 @@ const BeEducatorForm = props => {
             <Form.Item label={state.translation.educator_name} name="name" rules={[{ required: true, whitespace: true }]} {...col}>
                 <Input size="large" />
             </Form.Item>
-            <Form.Item label={state.translation.educator_username} name="username" rules={[{ required: true, min: 8,  whitespace: true }]} {...col} >
-                <Input size="large" />
+            <Form.Item label={state.translation.educator_username} name="username" rules={[{ required: true, min: 3, max:50,  whitespace: true }]} {...col} >
+                <Input size="large" maxLength={50}/>
             </Form.Item>
-            <Form.Item label={state.translation.description} name="description" rules={[{ required: true, min: 8,  whitespace: true }]} {...col} >
-                <Input.TextArea size="large" autoSize={{ minRows: 6, maxRows: 6 }} />
+            <Form.Item label={state.translation.description} name="description" rules={[{ required: true, max: 1000,  whitespace: true }]} {...col} >
+                <Input.TextArea size="large" autoSize={{ minRows: 6, maxRows: 6 }} maxLength={1000}/>
             </Form.Item>
             <Form.Item label={state.translation.profile_picture} name="profilePicture" normalize={value => value.file} {...col} >
                 <Upload

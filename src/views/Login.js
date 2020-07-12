@@ -43,25 +43,29 @@ const LOGIN = (
                 date
                 expiryDate
                 loginType
+                userId
+                user {
+                    fullName
+                    username
+                    email
+                    isEducator
+                }
             }
         }
     `
 )
 
 const Login = props => {
-
     const [login, { loading }] = useMutation(LOGIN)
     const { state } = useContext(Localize)
     const { dispatch: sessionDispatch } = useContext(Session)
-    
+
     if(localStorage.session)
         return <Redirect to='/' />
 
     const onLogin = async values => {
         try{
-            values.loginType = 'REGULAR'
-
-            const result = await login({ variables: { login: values  }})
+            const result = await login({ variables: { login: values }})
             await sessionDispatch({ type: 'login', session: result.data.login })
 
             message.success({ content: state.translation.messages['Login successful'] })

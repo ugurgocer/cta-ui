@@ -7,6 +7,9 @@ const initialState = {
     date: null,
     expiryDate: null,
     loginType: null,
+    userId: null,
+    user: null,
+    educator: null
 }
 
 const reducer = (state, action) => {
@@ -17,11 +20,12 @@ const reducer = (state, action) => {
             localStorage.setItem('session', action.session.token)
             return {
                 ...state,
-                ...action.session
+                ...action.session,
+                educator: action.educator ? action.educator : null
             }
         case 'logout':
-            localStorage.clear()
-
+            localStorage.removeItem('session')
+            
             return initialState
         default:
             return state

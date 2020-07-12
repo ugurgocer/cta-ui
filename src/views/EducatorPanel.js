@@ -1,10 +1,12 @@
 import React, { useContext } from 'react'
 import Localize from './../global/Localize'
+import Session from './../global/Session'
 
 import { Layout, Menu, Card, Avatar, Col, Row, Divider } from 'antd'
 import { Link, Switch, Route } from 'react-router-dom'
-import TextEditor from '../components/Course.form'
-
+import CreateCourse from '../views/Educator/CreateCourse'
+import MyCourses from '../views/Educator/MyCourses'
+import Course from '../views/Educator/Course'
 import { FaBook } from 'react-icons/fa'
 
 import '../asset/layout.css'
@@ -29,27 +31,28 @@ const grid_layout = {
     }
 }
 
+
 const EducatorPanel = props => {
-
     const { state } = useContext(Localize)
+    const { state: session } = useContext(Session)
 
-    console.log('d')
     const menu = (
         <div>
             <Card
                 style={{ width: "100%" }}
                 bordered={false}
-                key="sf"
             >
                 <Card.Meta
-                    avatar={<Avatar src="" size="large" />}
-                    title="fsdf"
-                    key="fsfsf"
+                    avatar={<Avatar src={session.educator.profilePicture.url} size="large" shape="circle" style={{ backgroundColor: '#fff' }}/>}
+                    title={session.educator.name}
+                    description={session.educator.username}
                 />
             </Card>
-            <Divider type="horizontal" />
+            <Divider type="horizontal" style={{ marginTop: 0, marginBottom: 5, borderColor: '#673ab7' }}/>
             <Menu
                 mode="inline"
+                theme="dark"
+                style={{ backgroundColor: " #5530a1", color: "#fff"}}
             >
 
                 <Menu.SubMenu
@@ -68,23 +71,17 @@ const EducatorPanel = props => {
         <Layout className="site-layout-background">
             <Row style={{ width: "100%" }}>
                 <Col {...grid_layout.sider}>
-                    <Layout.Sider className="site-layout-background" style={{
-                        boxShadow: "0 0 1px 1px rgba(20,23,28,.1), 0 3px 1px 0 rgba(20,23,28,.1)",
-                        zIndex: 100,
-                        position: "fixed",
-                        left: 0,
-                        marginTop: -16
-                    }}>
+                    <Layout.Sider >
                         {menu}
                     </Layout.Sider>
                 </Col>
                 <Col {...grid_layout.content}>
-                    <Content style={{ padding: '0 24px' }}>
-                        <div>
-                            <Switch>
-                                <Route path="/educator/panel/create/course" component={TextEditor} />			
-                            </Switch>
-                        </div>
+                    <Content style={{ paddingLeft: 24 }}>
+                        <Switch>
+                            <Route path="/educator/panel/create/course" component={CreateCourse} />
+                            <Route path="/educator/panel/my/courses" component={MyCourses} />
+                            <Route path="/educator/panel/course/:seoLink" component={Course} />
+                        </Switch>
                     </Content>
                 </Col>
             </Row>

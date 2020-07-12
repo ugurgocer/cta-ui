@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react'
 import { Form, Input, Button, Upload, message, Divider } from 'antd'
 import Localize from './../global/Localize'
+import { resizeImage } from './../utils/image'
 
 const col = {
     labelCol: {
@@ -10,8 +11,8 @@ const col = {
     },
     wrapperCol: {
         md: { span: 12, offset: 1},
-        lg: { span: 8, offset: 1},
-        xl: { span: 8, offset: 1},
+        lg: { span: 10, offset: 1},
+        xl: { span: 10, offset: 1},
     }
 }
 
@@ -28,8 +29,7 @@ const fileType = [
 
 const CourseForm = props => {
     const { state } = useContext(Localize)
-    const [ image, setImage ] = useState(null)
-    const [ banner, setBanner ] = useState(null)
+    const [ image, setImage ] = useState(props.initialValues ? props.initialValues.image : null)
 
     return (
         <Form
@@ -37,13 +37,17 @@ const CourseForm = props => {
             size="middle"
             name="basic"
             validateMessages={state.translation.form}
-            onFinish={values => console.log(values) }
+            onFinish={props.onSubmit}
             style={{ width: "100%" }}
+            initialValues={props.initialValues}
         >
             <Form.Item label={state.translation.course_title} name="title" rules={[{ required: true, whitespace: true }]} {...col}>
                 <Input size="large" />
             </Form.Item>
-            <Form.Item label={state.translation.description} name="description" rules={[{ required: true, min: 8,  whitespace: true }]} {...col} >
+            <Form.Item label={state.translation.seo_link} name="seoLink" normalize={value => value.trim()} rules={[{ required: true, whitespace: true }]} {...col}>
+                <Input size="large" />
+            </Form.Item>
+            <Form.Item label={state.translation.description} name="description" rules={[{ required: true, min: 0, max:1000,  whitespace: true }]} {...col} >
                 <Input.TextArea size="large" autoSize={{ minRows: 6, maxRows: 6 }} />
             </Form.Item>
             <Form.Item label={state.translation.image} name="image" normalize={value => value.file} {...col} >
@@ -64,7 +68,11 @@ const CourseForm = props => {
                             reader.readAsDataURL(file)
 
                             reader.onload = e => {
-                                r(e.target.result)
+                                const img = new Image()
+                                img.src = e.target.result.toString()
+                                img.onload = function(){
+                                    r(resizeImage(this, 200, 200))
+                                }
                             }
                         }).then(url => setImage({...file, url, response: 'upload done'}))
                     )}
@@ -76,35 +84,6 @@ const CourseForm = props => {
                     }}
                 >
                     <Button>{state.translation['Click to Upload']}</Button>
-                </Upload>
-            </Form.Item>
-            <Form.Item label={state.translation.banner} name="banner" normalize={value => value.file} {...col} >
-                <Upload
-                    accept=".jpg,.png"
-                    beforeUpload={file => {
-                        const ext = file.name.split('.')
-
-                        if(fileType.indexOf("." + ext[ext.length - 1]) === -1){
-                            message.warning("Format Uymuyor")
-                            return Promise.reject('*')
-                        }
-                    }}
-                    method="get"
-                    action={file => (
-                        new Promise((r, j) => {
-                            let  reader = new FileReader()
-                            reader.readAsDataURL(file)
-
-                            reader.onload = e => {
-                                r(e.target.result)
-                            }
-                        }).then(url => setBanner({...file, url, response: 'upload done'}))
-                    )}
-                    onRemove={() => setBanner(null)}
-                    listType="picture-card"
-                    fileList={banner ? [banner] : []}
-                >
-                    <Button>{state.translation['Click to Upload']} </Button>
                 </Upload>
             </Form.Item>
             <Divider type="horizontal" />

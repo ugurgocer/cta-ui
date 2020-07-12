@@ -35,7 +35,7 @@ const layout = {
     },
 }
 
-const LOGIN = (
+const BE_EDUCATOR = (
     gql`
         mutation($educator: EducatorCreateInput!){
             educatorCreate(educator: $educator){
@@ -56,25 +56,27 @@ const LOGIN = (
 
 const BeEducator = props => {
 
-    const [educatorCreate, { loading }] = useMutation(LOGIN)
+    const [educatorCreate, { loading }] = useMutation(BE_EDUCATOR)
     const { state } = useContext(Localize)
-    const { dispatch: sessionDispatch } = useContext(Session)
+    const { state: session, dispatch: sessionDispatch } = useContext(Session)
     
     const onSubmit = async values => {
         try{
 
-            const profilePicture = {
-                url: values.profilePicture.url,
-                uid: values.profilePicture.uid,
-                response: values.profilePicture.response,
-                status: values.profilePicture.status,
+            const image = {
+                url: values.image.url,
+                uid: values.image.uid,
+                response: values.image.response,
+                status: values.image.status,
             }
 
-            delete values.profilePicture.xhr
+            delete values.image.xhr
 
-            values.profilePicture = profilePicture
+            values.image = image
 
-            const result = await educatorCreate({ variables: { educator: values } })
+            await educatorCreate({ variables: { educator: values } })
+
+            sessionDispatch({ type: 'login', session: {...session, loginType: 'EDUCATOR'} })
 
             message.success({ content: state.translation.messages['Transaction successful'] })
         }catch(err){

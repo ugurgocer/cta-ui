@@ -18,6 +18,7 @@
     "jshint": "^2.11.1",
     "list-files": "^1.1.4",
     "list-react-files": "^0.2.0",
+    "path-to-regexp": "^6.1.0",
     "react": "^16.13.1",
     "react-codemirror2": "^7.2.1",
     "react-dom": "^16.13.1",

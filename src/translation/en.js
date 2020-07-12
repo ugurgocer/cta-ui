@@ -7,7 +7,8 @@ const formfields = {
     description: 'Description',
     image: 'Image',
     banner: 'Banner',
-    profilePicture: 'Profile Picture'
+    profilePicture: 'Profile Picture',
+    seoLink: 'Seo Link'
     
 }
 
@@ -38,13 +39,22 @@ module.exports = {
     profile_picture: 'Profile Picture',
     educator_username: 'Educator Username',
     educator_name: 'Educator Name',
-    
+    seo_link: 'Seo Link',
+    createdAt: 'Created Date',
+    updatedAt: 'Last Updated Date',
+    edit: 'Edit',
+    delete: 'Delete',
+    'Add a New Section': 'Add a New Section',
+    yes: 'Yes',
+    no: 'No',
+
+
     messages: {
       'Login successful': 'Login successful',
       'Register successful': 'Register successful',
       'Transaction successful': 'Transaction successful',
+      'Are you sure delete this course?': 'Are you sure delete this course?',
     },
-    
     form: {
         default: (name) => `Validation error on field ${formfields[name]}`,
         required: (name) => `${formfields[name]} is required`,

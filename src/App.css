@@ -46,3 +46,44 @@
   background-color: #5530a1 !important;
   color: #fff !important;
 }
+
+.ant-layout-sider, .ant-layout-sider .ant-card, .ant-layout-sider .ant-card .ant-card-meta-title, .ant-layout-sider .ant-card .ant-card-meta-description {
+  background-color: #5530a1 !important;
+  color: #fff !important
+}
+
+.ant-layout-sider .ant-menu-item, .ant-layout-sider .ant-menu-sub {
+  background-color: #351b69 !important
+}
+
+.site-layout-background{
+  background-color:  #FCF4FF !important;
+}
+
+aside {
+  box-shadow: 0 0 1px 1px rgba(20,23,28,.1), 0 0 3px 3px rgba(20,23,28,.1) !important;
+  z-index: 100 !important;
+  position: fixed !important;
+  left: 0 !important;
+  margin-top: -16px !important;
+  top: 81px !important
+}
+
+
+.ant-table-thead .ant-table-cell, .ant-table-thead, .ant-modal-header, .ant-modal-header > .ant-modal-title{
+  background-color: #5530a1 !important;
+  color: #fff !important
+}
+.ant-modal-close {
+  color: #fff !important
+}
+
+.picture-in-table{
+  width: 100px;
+  height: 100px;
+}
+
+.ant-menu-horizontal > .ant-menu-item-selected a {
+  color: #5530a1 !important;
+}
+

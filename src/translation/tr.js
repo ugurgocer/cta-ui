@@ -8,7 +8,8 @@ const formfields = {
     description: 'Açıklama',
     image: 'Fotoğraf',
     banner: 'Afiş',
-    profilePicture: 'Profile Picture'
+    profilePicture: 'Profile Picture',
+    seoLink: 'Seo Link',
 }
 
 module.exports = {
@@ -38,11 +39,20 @@ module.exports = {
     profile_picture: 'Profil Resmi',
     educator_username: 'Eğitmen Kullanıcı Adı',
     educator_name: 'Eğitmen Adı',
+    seo_link: 'Seo Link',
+    createdAt: 'Oluşturulma Tarihi',
+    updatedAt: 'Son Güncelleme Tarihi',
+    edit: 'Düzenle',
+    delete: 'Sil',
+    'Add a New Section': 'Yeni Bölüm Ekle',
+    yes: 'Evet',
+    no: 'Hayır',
 
     messages: {
-      'Login successful': 'Giriş başarılı',
-      'Register successful': 'Kayıt başarılı',
-      'Transaction successful': 'İşlem başarılı',
+      'Login successful': 'Login successful',
+      'Register successful': 'Register successful',
+      'Transaction successful': 'Transaction successful',
+      'Are you sure delete this course?': 'Bu kursu silmek istediğinizden emin misiniz?',
     },
     
     form: {

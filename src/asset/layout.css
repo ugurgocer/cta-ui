@@ -27,7 +27,7 @@
     width: 100%
 }
 
-.ant-menu-item-selected, .ant-menu-active, .ant-menu-item:hover {
+.ant-menu-light .ant-menu-item-selected, .ant-menu-light .ant-menu-active,.ant-menu-light .ant-menu-item:hover {
     color: #5530a1 !important;
     border-bottom: 2px solid #5530a1 !important;
 }
@@ -64,6 +64,21 @@
     }
 }
 
+@media (max-width: 991px){
+    .site-layout-background{
+        padding: 16px 5px !important;
+    }
+
+    .ant-layout-content {
+        padding: 0 !important;
+    }
+
+    .modal-action {
+        width: 100% !important;
+        top: 0 !important;
+    }
+}
+
 @media (min-width: 1601px){
     #menu {
         flex: 0 0 25%;
@@ -82,4 +97,20 @@
         flex: 0 0 40% !important;
         max-width: 40% !important;
     }
+}
+
+.card-actions {
+    font-weight: 600;
+    color: #fff;
+    text-align: center;
+    display: block;
+}
+
+.card-actions:hover {
+    font-weight: 600;
+    color: #eee;
+}
+
+.ant-card-actions {
+    background-color: #4b8fe0 !important
 }
