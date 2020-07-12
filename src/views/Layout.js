@@ -79,15 +79,6 @@ const TOKEN_READ = (
                     isEducator
                 }
             }
-            meEducatorInfo{
-                educatorId
-                name
-                username
-                description
-                profilePicture{
-                    url
-                }
-            }
         }
     `
 )
@@ -112,8 +103,8 @@ const Main = props => {
         return <Redirect to="/login" />
     }
 
-    if(!session.token || !session.educator){
-        sessionDispatch({ type: 'login', session: data.tokenRead, educator: data.meEducatorInfo })
+    if(!session.token){
+        sessionDispatch({ type: 'login', session: data.tokenRead })
 
         return null
     }else{

@@ -43,6 +43,13 @@ const REGISTER = (
                 date
                 expiryDate
                 loginType
+                userId
+                user {
+                    fullName
+                    username
+                    email
+                    isEducator
+                }
             }
         }
     `

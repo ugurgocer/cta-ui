@@ -2,12 +2,13 @@ import React, { useContext } from 'react'
 import { useQuery, useMutation } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
 import Localize from './../../global/Localize'
+import Session from './../../global/Session'
 import moment from 'moment'
 import { compile } from 'path-to-regexp'
 
 import { Card, Divider, Popconfirm, message } from 'antd'
 import { AiFillEdit, AiFillFileAdd, AiFillDelete } from 'react-icons/ai'
-import { Switch, Route } from 'react-router-dom'
+import { Switch, Route, Redirect } from 'react-router-dom'
 import Edit from './EditCourse'
 
 const COURSE_READ = (
@@ -47,6 +48,7 @@ const Course = props => {
     const { loading, data } = useQuery(COURSE_READ, { variables: { seoLink: props.match.params.seoLink }, fetchPolicy: "network-only" })
     const [ mutate ] = useMutation(DELETE_COURSE)
     const { state } = useContext(Localize)
+    const { state: session } = useContext(Session)
     
     const deleteCourse = async () => {
         try{
@@ -68,86 +70,93 @@ const Course = props => {
     }
 
     if(loading) return null
-
-    return (
-        <Card
-            loading={loading}
-            title={
-                <span>
-                    <span>    
-                        {data.courseRead.title}
-                    </span>
-                </span>
-            }
-        >
-        <Card
-            actions={[
-                <span
-                    className="card-actions"
-                    key="edit"
-                    onClick={() => onClickAction("edit")}
+    else if(!data.courseRead){
+        message.error('course not found')
+        return <Redirect to="/educator/panel" />
+    }else{
+        if(data.courseRead.educatorId !== session.educator.educatorId ){
+            return <Redirect to="/educator/panel" />
+        }else{
+            return (
+                <Card
+                    loading={loading}
+                    title={
+                        <span>
+                            <span>    
+                                {data.courseRead.title}
+                            </span>
+                        </span>
+                    }
                 >
-                    <AiFillEdit
-                        size={18}
-                        style={{ verticalAlign: "middle", marginRight: 8 }}
-                    />
-                    {state.translation.edit}
-                </span>,
-                <span
-                    className="card-actions"
-                    key="add-section"
-                    onClick={() => onClickAction("add-section")}
-                >
-                    <AiFillFileAdd
-                        size={18}
-                        style={{ verticalAlign: "middle", marginRight: 8 }}
-                    />
-                    {state.translation['Add a New Section']}
-                </span>,
-                <Popconfirm
-                    title={state.translation.messages["Are you sure delete this course?"]}
-                    onConfirm={deleteCourse}
-                    okText={state.translation.yes}
-                    key="delete"
-                    cancelText={state.translation.no}
-                >
-                    <span
-                        className="card-actions"
+                    <Card
+                        actions={[
+                            <span
+                                className="card-actions"
+                                key="edit"
+                                onClick={() => onClickAction("edit")}
+                            >
+                                <AiFillEdit
+                                    size={18}
+                                    style={{ verticalAlign: "middle", marginRight: 8 }}
+                                />
+                                {state.translation.edit}
+                            </span>,
+                            <span
+                                className="card-actions"
+                                key="add-section"
+                                onClick={() => onClickAction("add-section")}
+                            >
+                                <AiFillFileAdd
+                                    size={18}
+                                    style={{ verticalAlign: "middle", marginRight: 8 }}
+                                />
+                                {state.translation['Add a New Section']}
+                            </span>,
+                            <Popconfirm
+                                title={state.translation.messages["Are you sure delete this course?"]}
+                                onConfirm={deleteCourse}
+                                okText={state.translation.yes}
+                                key="delete"
+                                cancelText={state.translation.no}
+                            >
+                                <span
+                                    className="card-actions"
+                                >
+                                    <AiFillDelete
+                                        size={18}
+                                        style={{ verticalAlign: "middle", marginRight: 8 }}
+                                    />
+                                    {state.translation.delete}
+                                </span>
+                            </Popconfirm>
+                        ]}
                     >
-                        <AiFillDelete
-                            size={18}
-                            style={{ verticalAlign: "middle", marginRight: 8 }}
+                        <Card.Meta
+                            avatar={
+                                <img
+                                    alt={data.courseRead.title}
+                                    src={data.courseRead.image.url}
+                                    className="picture-in-table"
+                                />
+                            }
+                            title={data.courseRead.title}
+                            description={
+                                <span>
+                                    {data.courseRead.description}
+                                    <Divider style={{ margin: '10px 0' }}/>
+                                    {state.translation.createdAt}: {moment(data.courseRead.createdAt).format('DD MMMM YYYY HH:mm')}<br/>
+                                    {state.translation.updatedAt}: {moment(data.courseRead.updatedAt).format('DD MMMM YYYY HH:mm')}
+                                </span>
+                            }
                         />
-                        {state.translation.delete}
-                    </span>
-                </Popconfirm>
-            ]}
-        >
-            <Card.Meta
-                avatar={
-                    <img
-                        alt={data.courseRead.title}
-                        src={data.courseRead.image.url}
-                        className="picture-in-table"
-                    />
-                }
-                title={data.courseRead.title}
-                description={
-                    <span>
-                        {data.courseRead.description}
-                        <Divider style={{ margin: '10px 0' }}/>
-                        {state.translation.createdAt}: {moment(data.courseRead.createdAt).format('DD MMMM YYYY HH:mm')}<br/>
-                        {state.translation.updatedAt}: {moment(data.courseRead.updatedAt).format('DD MMMM YYYY HH:mm')}
-                    </span>
-                }
-            />
-        </Card>
-        <Switch>
-            <Route path="/educator/panel/course/:seoLink/edit" render={props => <Edit course={data.courseRead} modalClose={modalClose} {...props}/>}  />
-        </Switch>
-      </Card>
-    )
-
+                    </Card>
+                    <Switch>
+                        <Route path="/educator/panel/course/:seoLink/edit" render={props => <Edit course={data.courseRead} modalClose={modalClose} {...props}/>}  />
+                    </Switch>
+                </Card>
+            )
+        }
+    }
 }
 
 export default Course

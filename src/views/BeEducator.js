@@ -62,23 +62,24 @@ const BeEducator = props => {
     
     const onSubmit = async values => {
         try{
-
-            const image = {
-                url: values.image.url,
-                uid: values.image.uid,
-                response: values.image.response,
-                status: values.image.status,
+            const profilePicture = {
+                url: values.profilePicture.url,
+                uid: values.profilePicture.uid,
+                response: values.profilePicture.response,
+                status: values.profilePicture.status,
             }
 
-            delete values.image.xhr
+            delete values.profilePicture.xhr
 
-            values.image = image
+            values.profilePicture = profilePicture
 
             await educatorCreate({ variables: { educator: values } })
 
-            sessionDispatch({ type: 'login', session: {...session, loginType: 'EDUCATOR'} })
+            await sessionDispatch({ type: 'login', session: { ...session, loginType: 'EDUCATOR'} })
 
             message.success({ content: state.translation.messages['Transaction successful'] })
+
+            props.history.push('/educator/panel')
         }catch(err){
             message.error({ content: err.message })
         }

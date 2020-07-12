@@ -1,7 +1,8 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
 import Localize from './../../global/Localize'
+import Session from './../../global/Session'
 
 import { message, Table } from 'antd'
 import { compile } from 'path-to-regexp'
@@ -9,8 +10,8 @@ import moment from 'moment'
 
 const COURSE_LIST = (
     gql`
-        {
-            courseList{
+        query($filter: CourseFilterBase){
+            courseList(filter: $filter){
                 courses{
                     title
                     description
@@ -28,9 +29,16 @@ const COURSE_LIST = (
 )
 
 const CreateCourse = props => {
-
-    const { loading, data } = useQuery(COURSE_LIST, { fetchPolicy: "network-only" })
+    const { state: session } = useContext(Session)
     const { state } = useContext(Localize)
+
+    const initialFilter = [
+        { educatorId: { eq: session.educator.educatorId } }
+    ]
+
+    const [ filter, setFilter ] = useState(initialFilter)
+
+    const { loading, data } = useQuery(COURSE_LIST, { variables: { filter: { and: filter } }, fetchPolicy: "network-only" })
 
     if(loading) return null
 
