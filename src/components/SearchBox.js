@@ -4,13 +4,12 @@ import Localize from './../global/Localize'
 
 import '../asset/layout.css'
 
-
 const SearchBox = props => {
     const { state } = useContext(Localize)
     const [ value, setValue ] = useState("")
     const options = []
 
-    return (
+      return (
         <span>
             <AutoComplete
                 value={value}
@@ -20,7 +19,7 @@ const SearchBox = props => {
                 notFoundContent={null}
                 options={options}
             >
-                <Input.Search placeholder={state.translation['Find a new course']} enterButton onSearch={() => {console.log(value) }} />
+                <Input.Search placeholder={state.translation['Find a new course']} enterButton onSearch={() => {props.onSearch(value)}} />
             </AutoComplete>
         </span>
 

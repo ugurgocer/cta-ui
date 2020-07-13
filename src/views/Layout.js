@@ -4,6 +4,8 @@ import Session from './../global/Session'
 import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
 import moment from 'moment'
+import { compile } from 'path-to-regexp'
+
 import "moment/min/locales.min"
 
 import { Layout, Menu, Row, Col, Avatar } from 'antd'
@@ -12,6 +14,7 @@ import { Redirect, Link, Switch, Route } from 'react-router-dom'
 import EducatorPanel from './EducatorPanel'
 import BeEducator from './BeEducator'
 import RightDrawer from './RightDrawer'
+import SearchCourse from './Search.course'
 
 import { FaChalkboardTeacher, FaRegUserCircle } from 'react-icons/fa'
 import { BsFillGridFill, BsFillStarFill } from 'react-icons/bs'
@@ -87,7 +90,11 @@ const Main = props => {
     const { state } = useContext(Localize)
     const { state: session, dispatch: sessionDispatch } = useContext(Session)
     const { loading, error, data } = useQuery(TOKEN_READ, { fetchPolicy: 'network-only' })
-    const [ rightPanelOpen, onRightPanelOpen ] = useState(false)
+    const [ rightPanelOpen, onRightPanelOpen ] = useState(false) 
+
+    const onSearch = value => {
+        props.history.push(compile('/search/course/:value')({ value }))
+    }
 
     moment.locale(state.language)
 
@@ -128,7 +135,7 @@ const Main = props => {
                         {menu}
                         </Col>
                         <Col {...header_layout.search}>
-                            <SearchBox style={{ width: "100%", position: "relative" }} />
+                            <SearchBox onSearch={onSearch} style={{ width: "100%", position: "relative" }} />
                         </Col>
                         <Col {...header_layout.be_educator}>
                             <Menu theme="light" mode="horizontal">
@@ -145,6 +152,7 @@ const Main = props => {
                         <Switch>
                             <Route path="/educator/panel" component={EducatorPanel} />
                             <Route path="/be-educator" component={BeEducator} />
+                            <Route path="/search/course/:value" component={SearchCourse} />
                         </Switch>
                     </div>
                 </Content>
