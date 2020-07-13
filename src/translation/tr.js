@@ -10,6 +10,7 @@ const formfields = {
     banner: 'Afiş',
     profilePicture: 'Profile Picture',
     seoLink: 'Seo Link',
+    name: 'Ad',
 }
 
 module.exports = {
@@ -47,11 +48,16 @@ module.exports = {
     'Add a New Section': 'Yeni Bölüm Ekle',
     yes: 'Evet',
     no: 'Hayır',
+    sections: 'Bölümler',
+    section_title: 'Bölüm Başlığı',
+    'Edit Course': 'Kurs Düzenle',
+    'Edit Section': 'Bölüm Düzenle',
+    'No section added for this course': 'Bu kurs için bölüm eklenmemiş',
 
     messages: {
-      'Login successful': 'Login successful',
-      'Register successful': 'Register successful',
-      'Transaction successful': 'Transaction successful',
+      'Login successful': 'Giriş başarılı',
+      'Register successful': 'Kayıt Başarılı',
+      'Transaction successful': 'İşlem Başarılı',
       'Are you sure delete this course?': 'Bu kursu silmek istediğinizden emin misiniz?',
     },
     

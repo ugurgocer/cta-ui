@@ -140,8 +140,8 @@ const Main = props => {
                         </Col>
                     </Row>
                 </Header>
-                <Content className="site-layout" style={{ marginTop: 64 }} >
-                    <div className="site-layout-background" style={{ padding: '30px 50px', minHeight: 380,  }}>
+                <Content className="site-layout" style={{ marginTop: 64, paddingBottom: 65 }} >
+                    <div className="site-layout-background" style={{ padding: '30px 50px' }}>
                         <Switch>
                             <Route path="/educator/panel" component={EducatorPanel} />
                             <Route path="/be-educator" component={BeEducator} />

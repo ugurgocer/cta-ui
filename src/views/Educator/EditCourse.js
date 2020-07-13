@@ -3,6 +3,7 @@ import { useMutation } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
 import Localize from './../../global/Localize'
 import { compile } from 'path-to-regexp'
+import { deleteUnchangedValue } from './../../utils/form'
 
 import { Modal, message } from 'antd'
 import CourseForm from './../../components/Course.form'
@@ -15,7 +16,6 @@ const EDIT_COURSE = (
                 description
                 seoLink
                 image{
-                    imageId
                     response
                     status
                     uid
@@ -39,16 +39,15 @@ const EditCourse = props => {
                 response: values.image.response,
                 status: values.image.status
             }
-
             delete values.image.xhr
-
             values.image = image
+            values = await deleteUnchangedValue(props.course, values)
 
             await editCourse({ variables: { course: values, id: props.course.courseId }})
 
             message.success({ content: state.translation.messages['Transaction successful'] })
-
-            props.history.push(compile('/educator/panel/course/:seoLink')({ seoLink: values.seoLink }))
+            props.refetch()
+            props.history.push(compile('/educator/panel/course/:seoLink')({ seoLink: values.seoLink ? values.seoLink : props.course.seoLink }))
         }catch(err){
             message.error({ content: err.message })
         }
@@ -56,7 +55,7 @@ const EditCourse = props => {
     
     return (
         <Modal
-            title={state.translation['Create a course']}
+            title={state.translation['Edit Course']}
             visible
             className="modal-action"
             width="80%"

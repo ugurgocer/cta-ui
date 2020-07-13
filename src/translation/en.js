@@ -3,13 +3,13 @@ const formfields = {
     password: 'Password',
     fullName: 'Full Name',
     username: 'Username',
-    title: 'Name',
+    title: 'Title',
     description: 'Description',
     image: 'Image',
     banner: 'Banner',
     profilePicture: 'Profile Picture',
-    seoLink: 'Seo Link'
-    
+    seoLink: 'Seo Link',
+    name: 'Name',
 }
 
 module.exports = {
@@ -47,7 +47,11 @@ module.exports = {
     'Add a New Section': 'Add a New Section',
     yes: 'Yes',
     no: 'No',
-
+    sections: 'Sections',
+    section_title: 'Section Title',
+    'Edit Course': 'Edit Course',
+    'Edit Section': 'Edit Section',
+    'No section added for this course': 'No section added for this course',
 
     messages: {
       'Login successful': 'Login successful',

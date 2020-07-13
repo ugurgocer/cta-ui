@@ -99,10 +99,9 @@
     }
 }
 
-.card-actions {
+.card-actions, .ant-list-header>span {
     font-weight: 600;
     color: #fff;
-    text-align: center;
     display: block;
 }
 
@@ -113,4 +112,9 @@
 
 .ant-card-actions {
     background-color: #4b8fe0 !important
+}
+
+.ant-list-items {
+    max-height: 500px;
+    overflow-y: auto;
 }

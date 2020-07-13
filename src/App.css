@@ -10,7 +10,6 @@
 }
 
 .App-header {
-  background-color: #282c34;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -70,7 +69,7 @@ aside {
 }
 
 
-.ant-table-thead .ant-table-cell, .ant-table-thead, .ant-modal-header, .ant-modal-header > .ant-modal-title{
+.ant-table-thead .ant-table-cell, .ant-table-thead, .ant-modal-header, .ant-modal-header > .ant-modal-title, .ant-list-header{
   background-color: #5530a1 !important;
   color: #fff !important
 }
@@ -87,3 +86,6 @@ aside {
   color: #5530a1 !important;
 }
 
+.ant-layout-content {
+  background-color:  #FCF4FF !important;
+}

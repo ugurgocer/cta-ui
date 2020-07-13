@@ -6,16 +6,19 @@ import Session from './../../global/Session'
 import moment from 'moment'
 import { compile } from 'path-to-regexp'
 
-import { Card, Divider, Popconfirm, message } from 'antd'
+import { Card, Divider, Popconfirm, message, } from 'antd'
 import { AiFillEdit, AiFillFileAdd, AiFillDelete } from 'react-icons/ai'
 import { Switch, Route, Redirect } from 'react-router-dom'
 import Edit from './EditCourse'
+import AddSection from './AddSection'
+import CourseSections from './CourseSections'
+import EditSection from './EditSection'
 
 const COURSE_READ = (
     gql`
         query($seoLink: String!){
             courseRead(seoLink: $seoLink){
-                courseId
+                id
                 title
                 description
                 educatorId
@@ -23,10 +26,17 @@ const COURSE_READ = (
                 createdAt
                 updatedAt
                 image{
+                    url
+                    uid
                     response
                     status
-                    uid
-                    url
+                }
+                courseSections{
+                    id
+                    title
+                    description
+                    createdAt
+                    updatedAt
                 }
             }
         }
@@ -45,14 +55,14 @@ const DELETE_COURSE = (
 
 const Course = props => {
 
-    const { loading, data } = useQuery(COURSE_READ, { variables: { seoLink: props.match.params.seoLink }, fetchPolicy: "network-only" })
+    const { loading, data, refetch } = useQuery(COURSE_READ, { variables: { seoLink: props.match.params.seoLink }, fetchPolicy: "network-only" })
     const [ mutate ] = useMutation(DELETE_COURSE)
     const { state } = useContext(Localize)
     const { state: session } = useContext(Session)
-    
+
     const deleteCourse = async () => {
         try{
-            await mutate({ variables: { id: data.courseRead.courseId }})
+            await mutate({ variables: { id: data.courseRead.id }})
 
             message.success({ content: state.translation.messages['Transaction successful'] })
             props.history.push('/educator/panel/my/courses')
@@ -66,6 +76,7 @@ const Course = props => {
     }
 
     const modalClose = () => {
+        refetch()
         props.history.push(compile('/educator/panel/course/:seoLink')({ seoLink: props.match.params.seoLink }))
     }
 
@@ -89,6 +100,7 @@ const Course = props => {
                     }
                 >
                     <Card
+                        style={{ marginBottom: 16 }}
                         actions={[
                             <span
                                 className="card-actions"
@@ -144,14 +156,36 @@ const Course = props => {
                                 <span>
                                     {data.courseRead.description}
                                     <Divider style={{ margin: '10px 0' }}/>
-                                    {state.translation.createdAt}: {moment(data.courseRead.createdAt).format('DD MMMM YYYY HH:mm')}<br/>
-                                    {state.translation.updatedAt}: {moment(data.courseRead.updatedAt).format('DD MMMM YYYY HH:mm')}
+                                    <span style={{ fontWeight: 600 }}>{state.translation.createdAt}</span>: {moment(data.courseRead.createdAt).format('DD MMMM YYYY HH:mm')}<br/>
+                                    <span style={{ fontWeight: 600 }}>{state.translation.updatedAt}</span>: {moment(data.courseRead.updatedAt).format('DD MMMM YYYY HH:mm')}
                                 </span>
                             }
                         />
                     </Card>
+                    <CourseSections courseSections={data.courseRead.courseSections} refetch={refetch} {...props} />
                     <Switch>
-                        <Route path="/educator/panel/course/:seoLink/edit" render={props => <Edit course={data.courseRead} modalClose={modalClose} {...props}/>}  />
+                        <Route
+                            path="/educator/panel/course/:seoLink/edit"
+                            render={ props => <Edit course={data.courseRead} modalClose={modalClose} refetch={refetch} {...props}/>}
+                        />
+                        <Route
+                            path="/educator/panel/course/:seoLink/add-section"
+                            render={ props => <AddSection courseId={data.courseRead.id} modalClose={modalClose} refetch={refetch} {...props}/>}
+                        />
+                        <Route
+                            path="/educator/panel/course/:seoLink/section/:id/edit"
+                            render={ props => {
+                                console.log(data.courseRead.courseSections)
+                                const id = parseInt(props.match.params.id)
+                                return <EditSection
+                                    courseSection={data.courseRead.courseSections.find(x => x.id === id)}
+                                    courseId={data.courseRead.id}
+                                    modalClose={modalClose}
+                                    refetch={refetch}
+                                    {...props}
+                                />
+                            }}
+                        />
                     </Switch>
                 </Card>
             )
