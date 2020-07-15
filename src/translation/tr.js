@@ -53,6 +53,9 @@ module.exports = {
     'Edit Course': 'Kurs Düzenle',
     'Edit Section': 'Bölüm Düzenle',
     'No section added for this course': 'Bu kurs için bölüm eklenmemiş',
+    'Number Of Course' : 'Kurs Sayısı',
+    'Number Of Student' : 'Öğrenci Sayısı',
+    'Number Of Document' : 'Doküman Sayısı',
 
     messages: {
       'Login successful': 'Giriş başarılı',
