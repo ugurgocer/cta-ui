@@ -56,6 +56,8 @@ module.exports = {
     'Number Of Course' : 'Kurs Sayısı',
     'Number Of Student' : 'Öğrenci Sayısı',
     'Number Of Document' : 'Doküman Sayısı',
+    'Publish':'Yayımla',
+    'Unpublish':'Yayımdan Kaldır',
 
     messages: {
       'Login successful': 'Giriş başarılı',
