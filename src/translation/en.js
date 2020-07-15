@@ -61,6 +61,7 @@ module.exports = {
     'No section added for this course': 'No section added for this course',
     'No document added for this section': 'No document added for this section',
     document_count: 'Document Count',
+    'Update My Informations': 'Update My Informations',
 
     messages: {
       'Login successful': 'Login successful',

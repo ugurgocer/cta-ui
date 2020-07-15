@@ -9,7 +9,8 @@ import { Link, Switch, Route } from 'react-router-dom'
 import CreateCourse from '../views/Educator/CreateCourse'
 import MyCourses from '../views/Educator/MyCourses'
 import Course from '../views/Educator/Course'
-import { FaBook } from 'react-icons/fa'
+import UpdateInformation from '../views/Educator/UpdateInformation'
+import { FaPencilAlt, FaBook } from 'react-icons/fa'
 
 import '../asset/layout.css'
 
@@ -89,6 +90,12 @@ const EducatorPanel = props => {
                         <Menu.Item key="create-course" ><Link to="/educator/panel/create/course">{state.translation['Create a course']}</Link></Menu.Item>
                         <Menu.Item key="my-courses"><Link to="/educator/panel/my/courses">{state.translation['My courses']}</Link></Menu.Item>
                     </Menu.SubMenu>
+                    
+                    <Menu.Item
+                     icon={<FaPencilAlt size={18} style={{ verticalAlign: "middle", marginRight: 8 }} />}
+                     onClick={()=>{
+                        props.history.push('/educator/panel/update')
+                    }} key="update-informations">{state.translation['Update My Informations']}</Menu.Item>
                 </Menu>
             </div>
         )
@@ -107,6 +114,9 @@ const EducatorPanel = props => {
                                 <Route path="/educator/panel/create/course" component={CreateCourse} />
                                 <Route path="/educator/panel/my/courses" component={MyCourses} />
                                 <Route path="/educator/panel/course/:seoLink" component={Course} />
+                                <Route path="/educator/panel/update">
+                                    <UpdateInformation educator={data.meEducatorInfo} />
+                                </Route>
                             </Switch>
                         </Content>
                     </Col>
@@ -118,3 +128,5 @@ const EducatorPanel = props => {
 }
 
 export default EducatorPanel
+
+

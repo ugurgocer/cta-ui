@@ -62,6 +62,7 @@ module.exports = {
     example_codes: 'Örnek Kodlar',
     create_document: 'Döküman Oluştur',
     document_count: 'Döküman Sayısı',
+    'Update My Informations' :'Bilgilerimi Güncelle',
 
     messages: {
       'Login successful': 'Giriş başarılı',
