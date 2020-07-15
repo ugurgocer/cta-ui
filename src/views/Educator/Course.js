@@ -6,8 +6,9 @@ import Session from './../../global/Session'
 import moment from 'moment'
 import { compile } from 'path-to-regexp'
 
-import { Card, Divider, Popconfirm, message, } from 'antd'
+import { Card, Divider, Popconfirm, message, Button} from 'antd'
 import { AiFillEdit, AiFillFileAdd, AiFillDelete } from 'react-icons/ai'
+import { FaPaperPlane } from 'react-icons/fa'
 import { Switch, Route, Redirect } from 'react-router-dom'
 import Edit from './EditCourse'
 import AddSection from './AddSection'
@@ -27,6 +28,7 @@ const COURSE_READ = (
                 seoLink
                 createdAt
                 updatedAt
+                isPublished
                 image{
                     url
                     uid
@@ -58,10 +60,21 @@ const DELETE_COURSE = (
     `
 )
 
+const UPDATE_COURSE = (
+    gql`
+        mutation($id:Int!, $course:CourseUpdateInput){
+            courseUpdate(id:$id,course: $course ) {
+                id
+            }
+        }
+    `
+)
+
 const Course = props => {
 
     const { loading, data, refetch } = useQuery(COURSE_READ, { variables: { seoLink: props.match.params.seoLink }, fetchPolicy: "network-only" })
     const [ mutate ] = useMutation(DELETE_COURSE)
+    const [ mutateIspublished ] = useMutation(UPDATE_COURSE)
     const { state } = useContext(Localize)
     const { state: session } = useContext(Session)
 
@@ -72,6 +85,17 @@ const Course = props => {
             message.success({ content: state.translation.messages['Transaction successful'] })
             props.history.push('/educator/panel/my/courses')
         }catch(err){
+            message.error({ content: err.message })
+        }
+    }
+
+    const changePublishStatus = async () => {
+        try {
+            await mutateIspublished({variables:{course: {isPublished:!data.courseRead.isPublished}, id:data.courseRead.educatorId}})
+
+            message.success({ content: state.translation.messages['Transaction successful'] })
+            refetch()
+        } catch (err) {
             message.error({ content: err.message })
         }
     }
@@ -145,7 +169,18 @@ const Course = props => {
                                     />
                                     {state.translation.delete}
                                 </span>
-                            </Popconfirm>
+                            </Popconfirm>,
+                            <span
+                                className="card-actions"
+                                key="add-section"
+                                onClick={changePublishStatus}
+                            >
+                                <FaPaperPlane
+                                    size={18}
+                                    style={{ verticalAlign: "middle", marginRight: 8 }}
+                                />
+                                {data.courseRead.isPublished ? state.translation['Unpublish'] : state.translation['Publish']}
+                            </span>
                         ]}
                     >
                         <Card.Meta
