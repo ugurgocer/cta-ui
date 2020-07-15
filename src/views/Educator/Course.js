@@ -13,6 +13,8 @@ import Edit from './EditCourse'
 import AddSection from './AddSection'
 import CourseSections from './CourseSections'
 import EditSection from './EditSection'
+import CreateDocument from './CreateDocument'
+import DocumentList from './DocumentList'
 
 const COURSE_READ = (
     gql`
@@ -37,6 +39,9 @@ const COURSE_READ = (
                     description
                     createdAt
                     updatedAt
+                    documents {
+                        id
+                    }
                 }
             }
         }
@@ -165,6 +170,7 @@ const Course = props => {
                     <CourseSections courseSections={data.courseRead.courseSections} refetch={refetch} {...props} />
                     <Switch>
                         <Route
+                            exact
                             path="/educator/panel/course/:seoLink/edit"
                             render={ props => <Edit course={data.courseRead} modalClose={modalClose} refetch={refetch} {...props}/>}
                         />
@@ -175,11 +181,33 @@ const Course = props => {
                         <Route
                             path="/educator/panel/course/:seoLink/section/:id/edit"
                             render={ props => {
-                                console.log(data.courseRead.courseSections)
                                 const id = parseInt(props.match.params.id)
                                 return <EditSection
                                     courseSection={data.courseRead.courseSections.find(x => x.id === id)}
-                                    courseId={data.courseRead.id}
+                                    modalClose={modalClose}
+                                    refetch={refetch}
+                                    {...props}
+                                />
+                            }}
+                        />
+                        <Route
+                            path="/educator/panel/course/:seoLink/section/:id/create-document"
+                            render={ props => {
+                                const id = parseInt(props.match.params.id)
+                                return <CreateDocument
+                                    sectionId={id}
+                                    modalClose={modalClose}
+                                    refetch={refetch}
+                                    {...props}
+                                />
+                            }}
+                        />
+                        <Route
+                            path="/educator/panel/course/:seoLink/section/:id"
+                            render={ props => {
+                                const id = parseInt(props.match.params.id)
+                                return <DocumentList
+                                    sectionId={id}
                                     modalClose={modalClose}
                                     refetch={refetch}
                                     {...props}

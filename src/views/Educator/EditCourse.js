@@ -43,7 +43,7 @@ const EditCourse = props => {
             values.image = image
             values = await deleteUnchangedValue(props.course, values)
 
-            await editCourse({ variables: { course: values, id: props.course.courseId }})
+            await editCourse({ variables: { course: values, id: props.course.id }})
 
             message.success({ content: state.translation.messages['Transaction successful'] })
             props.refetch()

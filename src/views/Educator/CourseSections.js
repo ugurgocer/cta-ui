@@ -6,7 +6,7 @@ import moment from 'moment'
 import gql from 'graphql-tag'
 
 import { Popconfirm, List, message } from 'antd'
-import { AiFillEdit, AiFillDelete, AiOutlineApartment } from 'react-icons/ai'
+import { AiFillEdit, AiFillDelete, AiOutlineApartment, AiOutlineFileProtect } from 'react-icons/ai'
 import { FaInbox } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 
@@ -25,7 +25,7 @@ const CourseSections = props => {
     const [ mutate ] = useMutation(DELETE_SECTION)
 
     const onClickAction = (key, id) => {
-        props.history.push(compile('/educator/panel/course/:seoLink/section/:id/')({ seoLink: props.match.params.seoLink, id })+key)
+        props.history.push(compile('/educator/panel/course/:seoLink/section/:id/')({ seoLink: props.match.params.seoLink, id: id })+key)
     }
 
     const deleteSection = async id => {
@@ -44,7 +44,6 @@ const CourseSections = props => {
             itemLayout="vertical"
             bordered
             header={<span
-                onClick={() => onClickAction("add-section")}
                 style={{ fontSize: 16 }}
             >
                 <AiOutlineApartment
@@ -91,11 +90,31 @@ const CourseSections = props => {
                                 />
                                 {state.translation.delete}
                             </span>
-                        </Popconfirm>
+                        </Popconfirm>,
+                        <span
+                            key="create-document"
+                            onClick={() => onClickAction("create-document", item.id)}
+                        >
+                            <AiOutlineFileProtect
+                                size={18}
+                                style={{ verticalAlign: "middle", marginRight: 8 }}
+                            />
+                            {state.translation.create_document}
+                        </span>,
+                        <span
+                            key="count-document"
+                            onClick={() => onClickAction("", item.id)}
+                        >
+                            <AiOutlineFileProtect
+                                size={18}
+                                style={{ verticalAlign: "middle", marginRight: 8 }}
+                            />
+                            {state.translation.document_count} : { item.documents ? item.documents.length : 0 }
+                        </span>
                     ]}
                     extra={
                         <span>
-                            <span style={{ fontWeight: 600 }}> {state.translation.updatedAt}</span> <br /> {moment(props.courseSections.updatedAt).format('DD MMMM YYYY HH:mm')}
+                            <span style={{ fontWeight: 600 }}> {state.translation.updatedAt}</span> <br /> {moment(item.updatedAt).format('DD MMMM YYYY HH:mm')}
                         </span>
                     }
                 >

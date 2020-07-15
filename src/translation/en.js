@@ -10,6 +10,9 @@ const formfields = {
     profilePicture: 'Profile Picture',
     seoLink: 'Seo Link',
     name: 'Name',
+    language: 'Programming Language',
+    document: 'Document',
+    codes: 'Example Codes'
 }
 
 module.exports = {
@@ -47,11 +50,17 @@ module.exports = {
     'Add a New Section': 'Add a New Section',
     yes: 'Yes',
     no: 'No',
+    programming_language: 'Programming Language',
     sections: 'Sections',
     section_title: 'Section Title',
+    document: 'Document',
+    example_codes: 'Example',
     'Edit Course': 'Edit Course',
     'Edit Section': 'Edit Section',
+    create_document: 'Create Document',
     'No section added for this course': 'No section added for this course',
+    'No document added for this section': 'No document added for this section',
+    document_count: 'Document Count',
 
     messages: {
       'Login successful': 'Login successful',

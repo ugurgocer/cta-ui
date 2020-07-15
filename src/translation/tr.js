@@ -11,6 +11,9 @@ const formfields = {
     profilePicture: 'Profile Picture',
     seoLink: 'Seo Link',
     name: 'Ad',
+    document: 'Döküman',
+    language: 'Programlama Dili',
+    codes: 'Örnek Kodlar',
 }
 
 module.exports = {
@@ -48,11 +51,17 @@ module.exports = {
     'Add a New Section': 'Yeni Bölüm Ekle',
     yes: 'Evet',
     no: 'Hayır',
+    document: 'Döküman',
+    programming_language: 'Programlama Dili',
     sections: 'Bölümler',
     section_title: 'Bölüm Başlığı',
     'Edit Course': 'Kurs Düzenle',
     'Edit Section': 'Bölüm Düzenle',
     'No section added for this course': 'Bu kurs için bölüm eklenmemiş',
+    'No document added for this section': 'Bu bölüm için döküman eklenmemiş',
+    example_codes: 'Örnek Kodlar',
+    create_document: 'Döküman Oluştur',
+    document_count: 'Döküman Sayısı',
 
     messages: {
       'Login successful': 'Giriş başarılı',

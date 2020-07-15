@@ -26,7 +26,8 @@ const colButton = {
 
 const fileType = [
     '.jpg',
-    '.png'
+    '.png',
+    '.jpeg'
 ]
 
 const BeEducatorForm = props => {
@@ -72,7 +73,7 @@ const BeEducatorForm = props => {
                                 const img = new Image()
                                 img.src = e.target.result.toString()
                                 img.onload = function(){
-                                    r(resizeImage(this, 200, 200))
+                                    r(resizeImage(this, 150, 150))
                                 }
                             }
                         }).then(url => setImage({...file, url, response: 'upload done'}))
