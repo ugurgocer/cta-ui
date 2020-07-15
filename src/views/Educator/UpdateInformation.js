@@ -26,9 +26,17 @@ const UpdateInformation = props => {
     
     
     const onSubmit = async values => {
-        values = await deleteUnchangedValue(props.educator, values)
-
         try{
+            const profilePicture = {
+                url: values.profilePicture.url,
+                uid: values.profilePicture.uid,
+                response: values.profilePicture.response,
+                status: values.profilePicture.status
+            }
+            
+            delete values.profilePicture.xhr
+            values.profilePicture = profilePicture
+            values = await deleteUnchangedValue(props.educator, values)
             await educatorUpdate({ variables: { educator: values, id: parseInt(props.educator.educatorId) }})
             message.success({ content: state.translation.messages['Transaction successful'] })  
         }catch(err){

@@ -42,8 +42,11 @@ const EDUCATOR_INFO = (
                 name
                 username
                 description
-                profilePicture{
+                profilePicture {
                     url
+                    uid
+                    response
+                    status
                 }
             }
         }
@@ -95,7 +98,7 @@ const EducatorPanel = props => {
                      icon={<FaPencilAlt size={18} style={{ verticalAlign: "middle", marginRight: 8 }} />}
                      onClick={()=>{
                         props.history.push('/educator/panel/update')
-                    }} key="update-informations">{state.translation['Update My Informations']}</Menu.Item>
+                    }} key="update-informations"> {state.translation['Update My Informations']}</Menu.Item>
                 </Menu>
             </div>
         )

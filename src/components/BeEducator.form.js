@@ -32,7 +32,7 @@ const fileType = [
 
 const BeEducatorForm = props => {
     const { state } = useContext(Localize)
-    const [ image, setImage ] = useState(null)
+    const [ image, setImage ] = useState(props.initialValues ? props.initialValues.profilePicture : null)
 
     return (
         <Form

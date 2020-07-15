@@ -39,6 +39,7 @@ const EditCourse = props => {
                 response: values.image.response,
                 status: values.image.status
             }
+            
             delete values.image.xhr
             values.image = image
             values = await deleteUnchangedValue(props.course, values)

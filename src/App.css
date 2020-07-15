@@ -46,12 +46,12 @@
   color: #fff !important;
 }
 
-.ant-layout-sider, .ant-layout-sider .ant-card, .ant-layout-sider .ant-card .ant-card-meta-title, .ant-layout-sider .ant-card .ant-card-meta-description {
+.ant-layout-sider, .ant-layout-sider .ant-card, .ant-layout-sider .ant-card .ant-card-meta-title, .ant-layout-sider .ant-card .ant-card-meta-description,.ant-layout-sider .ant-menu-item-selected  {
   background-color: #5530a1 !important;
   color: #fff !important
 }
 
-.ant-layout-sider .ant-menu-item, .ant-layout-sider .ant-menu-sub {
+.ant-layout-sider .ant-menu-submenu  .ant-menu-item, .ant-layout-sider .ant-menu-sub{
   background-color: #351b69 !important
 }
 
