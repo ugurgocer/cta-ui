@@ -62,6 +62,9 @@ module.exports = {
     'No document added for this section': 'No document added for this section',
     document_count: 'Document Count',
     'Update My Informations': 'Update My Informations',
+    'Number Of Course' : 'Number Of Course',
+    'Number Of Student' : 'Number Of Student',
+    'Number Of Document' : 'Number Of Document',
 
     messages: {
       'Login successful': 'Login successful',

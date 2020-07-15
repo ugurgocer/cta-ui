@@ -11,6 +11,7 @@ import MyCourses from '../views/Educator/MyCourses'
 import Course from '../views/Educator/Course'
 import UpdateInformation from '../views/Educator/UpdateInformation'
 import { FaPencilAlt, FaBook } from 'react-icons/fa'
+import EducatorReport from './EducatorReport'
 
 import '../asset/layout.css'
 
@@ -18,7 +19,7 @@ const { Content } = Layout
 
 
 const grid_layout = {
-    sider: {
+    sider: {    
         xs: 0,
         sm: 0,
         md: 0,
@@ -114,6 +115,9 @@ const EducatorPanel = props => {
                     <Col {...grid_layout.content}>
                         <Content style={{ paddingLeft: 24 }}>
                             <Switch>
+                                <Route path="/educator/panel/">
+                                    <EducatorReport id={data.meEducatorInfo.educatorId} />
+                                </Route>
                                 <Route path="/educator/panel/create/course" component={CreateCourse} />
                                 <Route path="/educator/panel/my/courses" component={MyCourses} />
                                 <Route path="/educator/panel/course/:seoLink" component={Course} />
@@ -130,6 +134,4 @@ const EducatorPanel = props => {
 
 }
 
-export default EducatorPanel
-
-
+export default EducatorPanel    

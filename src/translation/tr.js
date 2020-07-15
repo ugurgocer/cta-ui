@@ -63,6 +63,9 @@ module.exports = {
     create_document: 'Döküman Oluştur',
     document_count: 'Döküman Sayısı',
     'Update My Informations' :'Bilgilerimi Güncelle',
+    'Number Of Course' : 'Kurs Sayısı',
+    'Number Of Student' : 'Öğrenci Sayısı',
+    'Number Of Document' : 'Doküman Sayısı',
 
     messages: {
       'Login successful': 'Giriş başarılı',
