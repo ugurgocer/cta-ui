@@ -52,6 +52,7 @@ module.exports = {
     'Edit Course': 'Edit Course',
     'Edit Section': 'Edit Section',
     'No section added for this course': 'No section added for this course',
+    'Update My Informations': 'Update My Informations',
 
     messages: {
       'Login successful': 'Login successful',

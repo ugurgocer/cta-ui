@@ -41,6 +41,7 @@ const BeEducatorForm = props => {
             validateMessages={state.translation.form}
             onFinish={props.onSubmit}
             style={{ width: "100%" }}
+            initialValues={props.initialValues}
         >
             <Form.Item label={state.translation.educator_name} name="name" rules={[{ required: true, whitespace: true }]} {...col}>
                 <Input size="large" />
