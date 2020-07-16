@@ -2,6 +2,7 @@ import React, { useContext } from 'react'
 import { useMutation } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
 import Localize from './../../global/Localize'
+import Session from './../../global/Session'
 import { deleteUnchangedValue } from './../../utils/form'
 
 import { Card, message } from 'antd'
@@ -15,6 +16,12 @@ const INFORMATION_UPDATE = (
                 name
                 username
                 description
+                profilePicture {
+                    url
+                    uid
+                    response
+                    status
+                }
             }
         }
     `
@@ -23,6 +30,7 @@ const INFORMATION_UPDATE = (
 const UpdateInformation = props => {
     const [educatorUpdate, { loading }] = useMutation(INFORMATION_UPDATE)
     const { state } = useContext(Localize)
+    const { state: session, dispatch: sessionDispatch } = useContext(Session)
     
     
     const onSubmit = async values => {
@@ -37,8 +45,9 @@ const UpdateInformation = props => {
             delete values.profilePicture.xhr
             values.profilePicture = profilePicture
             values = await deleteUnchangedValue(props.educator, values)
-            await educatorUpdate({ variables: { educator: values, id: parseInt(props.educator.educatorId) }})
-            message.success({ content: state.translation.messages['Transaction successful'] })  
+            const result = await educatorUpdate({ variables: { educator: values, id: parseInt(props.educator.educatorId) }})
+            sessionDispatch({ type: 'login', educator: result.data.educatorUpdate, session })
+            message.success({ content: state.translation.messages['Transaction successful'] })
         }catch(err){
             message.error({ content: err.message })
         }

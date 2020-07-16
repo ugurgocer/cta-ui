@@ -71,7 +71,7 @@ const CourseForm = props => {
                                 const img = new Image()
                                 img.src = e.target.result.toString()
                                 img.onload = function(){
-                                    r(resizeImage(this, 200, 200))
+                                    r(resizeImage(this, 300, 300))
                                 }
                             }
                         }).then(url => setImage({...file, url, response: 'upload done'}))

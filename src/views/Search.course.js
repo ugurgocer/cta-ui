@@ -10,7 +10,7 @@ const COURSE_LIST_QUERY = (
           query($filter: CourseFilterBase){
           courseList(filter: $filter) {
                courses {
-                    courseId
+                    id
                     title
                     description
                     seoLink

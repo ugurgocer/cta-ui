@@ -10,7 +10,7 @@ import CreateCourse from '../views/Educator/CreateCourse'
 import MyCourses from '../views/Educator/MyCourses'
 import Course from '../views/Educator/Course'
 import UpdateInformation from '../views/Educator/UpdateInformation'
-import { FaPencilAlt, FaBook } from 'react-icons/fa'
+import { FaPencilAlt, FaBook, FaHome } from 'react-icons/fa'
 import EducatorReport from './EducatorReport'
 
 import '../asset/layout.css'
@@ -39,7 +39,7 @@ const EDUCATOR_INFO = (
     gql`
         {
             meEducatorInfo{
-                educatorId
+                id
                 name
                 username
                 description
@@ -85,7 +85,15 @@ const EducatorPanel = props => {
                     theme="dark"
                     style={{ backgroundColor: " #5530a1", color: "#fff"}}
                 >
-    
+                    <Menu.Item
+                        icon={<FaHome size={18} style={{ verticalAlign: "middle", marginRight: 8 }} />}
+                        onClick={()=>{
+                            props.history.push('/educator/panel')
+                        }}
+                        key="educator-panel"
+                    >
+                        {state.translation['Educator Panel']}
+                    </Menu.Item>
                     <Menu.SubMenu
                         key="courses"
                         title={state.translation.course}
@@ -96,10 +104,14 @@ const EducatorPanel = props => {
                     </Menu.SubMenu>
                     
                     <Menu.Item
-                     icon={<FaPencilAlt size={18} style={{ verticalAlign: "middle", marginRight: 8 }} />}
-                     onClick={()=>{
-                        props.history.push('/educator/panel/update')
-                    }} key="update-informations"> {state.translation['Update My Informations']}</Menu.Item>
+                        icon={<FaPencilAlt size={18} style={{ verticalAlign: "middle", marginRight: 8 }} />}
+                        onClick={()=>{
+                            props.history.push('/educator/panel/update')
+                        }}
+                        key="update-informations"
+                    >
+                        {state.translation['Update My Informations']}
+                    </Menu.Item>
                 </Menu>
             </div>
         )
@@ -115,14 +127,15 @@ const EducatorPanel = props => {
                     <Col {...grid_layout.content}>
                         <Content style={{ paddingLeft: 24 }}>
                             <Switch>
-                                <Route path="/educator/panel/">
-                                    <EducatorReport id={data.meEducatorInfo.educatorId} />
-                                </Route>
                                 <Route path="/educator/panel/create/course" component={CreateCourse} />
                                 <Route path="/educator/panel/my/courses" component={MyCourses} />
                                 <Route path="/educator/panel/course/:seoLink" component={Course} />
                                 <Route path="/educator/panel/update">
                                     <UpdateInformation educator={data.meEducatorInfo} />
+                                </Route>
+                                
+                                <Route exact path="/educator/panel/">
+                                    <EducatorReport id={data.meEducatorInfo.id} />
                                 </Route>
                             </Switch>
                         </Content>

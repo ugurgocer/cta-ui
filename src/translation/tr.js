@@ -68,6 +68,7 @@ module.exports = {
     'Number Of Document' : 'Doküman Sayısı',
     'Publish':'Yayımla',
     'Unpublish':'Yayımdan Kaldır',
+    courses: 'Kurslar',
 
     messages: {
       'Login successful': 'Giriş başarılı',

@@ -37,65 +37,9 @@
 }
 
 @media (min-width: 1200px){
-    #menu ul{
-        margin: 0 auto;
-        width: 400px;
-    }
-}
-
-@media (min-width: 1400px){
-    #logo {
-        flex: 0 0 9.5% !important;
-        max-width: 9.5% !important;
-    }
-
-    #be_educator {
-        display: block;
-        flex: 0 0 9% !important;
-        max-width: 9% !important;
-    }
-}
-
-
-@media (min-width: 1400px) and (max-width: 1600px){
-    #menu {
-        flex: 0 0 29%;
-        max-width: 29%;
-    }
-}
-
-@media (max-width: 991px){
-    .site-layout-background{
-        padding: 16px 5px !important;
-    }
-
-    .ant-layout-content {
-        padding: 0 !important;
-    }
-
-    .modal-action {
-        width: 100% !important;
-        top: 0 !important;
-    }
-}
-
-@media (min-width: 1601px){
-    #menu {
-        flex: 0 0 25%;
-        max-width: 25%;
-    }
-
     #header {
-        width: 90% !important;
+        width: 80% !important;
         margin: auto !important;
-    }
-}
-
-@media (min-width: 1030px) and (max-width: 1200px){
-
-    #menu {
-        flex: 0 0 40% !important;
-        max-width: 40% !important;
     }
 }
 

@@ -91,7 +91,7 @@ const Course = props => {
 
     const changePublishStatus = async () => {
         try {
-            await mutateIspublished({variables:{course: {isPublished:!data.courseRead.isPublished}, id:data.courseRead.educatorId}})
+            await mutateIspublished({variables:{course: { isPublished: !data.courseRead.isPublished }, id:data.courseRead.id }})
 
             message.success({ content: state.translation.messages['Transaction successful'] })
             refetch()
@@ -114,7 +114,7 @@ const Course = props => {
         message.error('course not found')
         return <Redirect to="/educator/panel" />
     }else{
-        if(data.courseRead.educatorId !== session.educator.educatorId ){
+        if(data.courseRead.educatorId !== session.educator.id ){
             return <Redirect to="/educator/panel" />
         }else{
             return (

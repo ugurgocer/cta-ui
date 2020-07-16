@@ -67,6 +67,7 @@ module.exports = {
     'Number Of Document' : 'Number Of Document',
     'Publish':'Publish',
     'Unpublish':'Unpublish',
+    courses: 'Courses',
 
     messages: {
       'Login successful': 'Login successful',

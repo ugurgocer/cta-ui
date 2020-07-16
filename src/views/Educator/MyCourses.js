@@ -33,7 +33,7 @@ const CreateCourse = props => {
     const { state } = useContext(Localize)
 
     const initialFilter = [
-        { educatorId: { eq: session.educator.educatorId } }
+        { educatorId: { eq: session.educator.id } }
     ]
 
     const [ filter, setFilter ] = useState(initialFilter)

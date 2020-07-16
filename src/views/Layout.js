@@ -12,12 +12,13 @@ import { Layout, Menu, Row, Col, Avatar } from 'antd'
 import SearchBox from '../components/SearchBox'
 import { Redirect, Link, Switch, Route } from 'react-router-dom'
 import EducatorPanel from './EducatorPanel'
+import EducatorProfile from './EducatorProfile'
 import BeEducator from './BeEducator'
 import RightDrawer from './RightDrawer'
 import SearchCourse from './Search.course'
+import Educators from './Educators'
 
 import { FaChalkboardTeacher, FaRegUserCircle } from 'react-icons/fa'
-import { BsFillGridFill, BsFillStarFill } from 'react-icons/bs'
 
 import '../asset/layout.css'
 
@@ -27,33 +28,36 @@ const header_layout = {
     logo: {
         xs: 7,
         sm: 6,
-        md: 6,
+        md: 3,
         lg: 4,
-        xl: 3,
+        xl: 4,
         id: "logo"
+    },
+    mobileMenu: {
+
     },
     menu: {
         xs: 0,
         sm: 0,
-        md: 0,
-        lg: 10,
-        xl: 8,
+        md: 4,
+        lg: 4,
+        xl: 5,
         id: "menu"
     },
     search: {
         xs: 10,
         sm: 10,
-        md: 10,
-        lg: 8,
-        xl: 10,
+        md: 8,
+        lg: 9,
+        xl: 9,
         id: "search"
     },
     be_educator: {
         xs: 0,
         sm: 0,
         md: 4,
-        lg: 0,
-        xl: 0,
+        lg: 4,
+        xl: 4,
         id: "be_educator"
     }, 
     user: {
@@ -118,9 +122,7 @@ const Main = props => {
 
         const menu = (
             <Menu theme="light" mode="horizontal">
-                <Menu.Item key="1" icon={<FaChalkboardTeacher size={18} style={{ verticalAlign: "middle", marginRight: 8 }}/>}>{state.translation.educators}</Menu.Item>
-                <Menu.Item key="2" icon={<BsFillGridFill size={18} style={{ verticalAlign: "middle", marginRight: 8 }}/>}>{state.translation.categories}</Menu.Item>
-                <Menu.Item key="3" icon={<BsFillStarFill size={18} style={{ verticalAlign: "middle", marginRight: 8 }}/>}>{state.translation.trends}</Menu.Item>
+                <Menu.Item key="1" icon={<FaChalkboardTeacher size={18} style={{ verticalAlign: "middle", marginRight: 8 }}/>}><Link to="/educators">{state.translation.educators}</Link></Menu.Item>
             </Menu>
         )
 
@@ -153,6 +155,8 @@ const Main = props => {
                             <Route path="/educator/panel" component={EducatorPanel} />
                             <Route path="/be-educator" component={BeEducator} />
                             <Route path="/search/course/:value" component={SearchCourse} />
+                            <Route path="/educators" component={Educators} />
+                            <Route path="/educator/:username" component={EducatorProfile} />
                         </Switch>
                     </div>
                 </Content>

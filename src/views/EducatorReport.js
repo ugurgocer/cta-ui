@@ -8,11 +8,12 @@ import { FaUserGraduate, FaFileAlt, FaBookReader } from 'react-icons/fa'
 const REPORT_QUERY = (
     gql`
         query($educatorId:Int!){
-        educatorcourseReport(educatorId: $educatorId) {
-        totalCourse
-        totalStudent
+            educatorcourseReport(educatorId: $educatorId) {
+                totalCourse
+                totalStudent
+                totalDocument
+            }
         }
-    }
     `
 )
 
@@ -22,15 +23,14 @@ const EducatorReport = props => {
     const { state } = useContext(Localize)
 
     if (loading) return null
-
     else {
         return (
             <div className="site-statistic-demo-card" >
                 <Row justify="center" align="top" gutter={30}>
-                    <Col xs={8} lg={5} >
+                    <Col xs={24} lg={8} style={{ marginBottom: 16 }}>
                         <Card headStyle={{textAlign:'center'}}>
                             <Statistic
-                                style={{textAlign:'center'}}
+                                style={{ textAlign:'center' }}
                                 title={state.translation['Number Of Course']}
                                 value={data.educatorcourseReport.totalCourse}
                                 valueStyle={{ color: '#3f8600' }}
@@ -39,7 +39,7 @@ const EducatorReport = props => {
                             />
                         </Card>
                     </Col>
-                    <Col xs={8} lg={5} >
+                    <Col xs={24} lg={8}  style={{ marginBottom: 16 }}>
                         <Card>
                             <Statistic
                                 style={{textAlign:'center'}}
@@ -50,7 +50,7 @@ const EducatorReport = props => {
                             />
                         </Card>
                     </Col>
-                    <Col xs={8} lg={5} >
+                    <Col xs={24} lg={8}  style={{ marginBottom: 16 }}>
                         <Card>
                             <Statistic
                                 style={{textAlign:'center'}}
