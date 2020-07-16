@@ -58,6 +58,14 @@ module.exports = {
     'Number Of Document' : 'Doküman Sayısı',
     'Publish':'Yayımla',
     'Unpublish':'Yayımdan Kaldır',
+    'Edit My Informations':'Bilgilerimi Güncelle',
+    'resume': 'Özgeçmiş',
+    'website':'Web Sitesi',
+    'title':'Başlık',
+    'twitter':'Twitter',
+    'facebook':'Facebook',
+    'linkedin':'LinkedIn',
+    'youtube':'YouTube',
 
     messages: {
       'Login successful': 'Giriş başarılı',

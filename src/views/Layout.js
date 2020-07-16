@@ -149,7 +149,7 @@ const Main = props => {
                     </div>
                 </Content>
                 <Footer style={{ textAlign: 'center' }}>Code Training App ©2020 Created by Uğur Güçer</Footer>
-                <RightDrawer rightPanelOpen={rightPanelOpen} onRightPanelOpen={onRightPanelOpen} onLogout={() => props.history.push('/login')} />
+                <RightDrawer rightPanelOpen={rightPanelOpen} onRightPanelOpen={onRightPanelOpen} onLogout={() => props.history.push('/login')} {...props} id={data.tokenRead.userId}/>
             </Layout>
         )
     }

@@ -57,6 +57,14 @@ module.exports = {
     'Number Of Document' : 'Number Of Document',
     'Publish':'Publish',
     'Unpublish':'Unpublish',
+    'Edit My Informations':'Edit My Informations',
+    'resume': 'Resume',
+    'website':'Web Site',
+    'title':'Title  ',
+    'twitter':'Twitter',
+    'facebook':'Facebook',
+    'linkedin':'LinkedIn',
+    'youtube':'YouTube',
 
     messages: {
       'Login successful': 'Login successful',
