@@ -68,6 +68,14 @@ module.exports = {
     'Publish':'Publish',
     'Unpublish':'Unpublish',
     courses: 'Courses',
+    'Edit My Informations':'Edit My Informations',
+    'resume': 'Resume',
+    'website':'Web Site',
+    'title':'Title  ',
+    'twitter':'Twitter',
+    'facebook':'Facebook',
+    'linkedin':'LinkedIn',
+    'youtube':'YouTube',
 
     messages: {
       'Login successful': 'Login successful',

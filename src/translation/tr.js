@@ -69,6 +69,14 @@ module.exports = {
     'Publish':'Yayımla',
     'Unpublish':'Yayımdan Kaldır',
     courses: 'Kurslar',
+    'Edit My Informations':'Bilgilerimi Güncelle',
+    'resume': 'Özgeçmiş',
+    'website':'Web Sitesi',
+    'title':'Başlık',
+    'twitter':'Twitter',
+    'facebook':'Facebook',
+    'linkedin':'LinkedIn',
+    'youtube':'YouTube',
 
     messages: {
       'Login successful': 'Giriş başarılı',
