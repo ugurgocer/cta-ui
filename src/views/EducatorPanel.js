@@ -135,7 +135,7 @@ const EducatorPanel = props => {
                                 </Route>
                                 
                                 <Route exact path="/educator/panel/">
-                                    <EducatorReport id={data.meEducatorInfo.id} />
+                                    <EducatorReport id={data.meEducatorInfo.id} {...props}/>
                                 </Route>
                             </Switch>
                         </Content>

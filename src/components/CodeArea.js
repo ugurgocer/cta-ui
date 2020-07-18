@@ -2,7 +2,6 @@ import React, { useContext, useState } from 'react'
 import CodeMirror from 'react-codemirror'
 import { JSHINT } from 'jshint'
 
-import 'codemirror/addon/hint/xml-hint'
 import 'codemirror/addon/lint/javascript-lint'
 import 'codemirror/addon/lint/lint'
 
@@ -27,7 +26,8 @@ const CodeArea = props => {
                 lint: true,
                 theme: "material",
                 mode: "javascript",
-                ...props.options
+                ...props.options,
+                autocorrect: true,
             }}
             name="code"
             onChange={(value) => props.onChange(value)}

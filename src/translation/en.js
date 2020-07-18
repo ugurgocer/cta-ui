@@ -76,7 +76,16 @@ module.exports = {
     'facebook':'Facebook',
     'linkedin':'LinkedIn',
     'youtube':'YouTube',
-
+    'Completed': 'Completed',
+    start: 'Start',
+    replay: 'Replay',
+    stop: 'Stop',
+    run: 'Run',
+    next: 'Next',
+    'Finish Section': 'Finish Section',
+    'Return to Course': 'Return to Course',
+    'Output': 'Output',
+    'No course matched': 'No course matched',
     messages: {
       'Login successful': 'Login successful',
       'Register successful': 'Register successful',

@@ -64,3 +64,41 @@ aside {
 .ant-layout-content {
   background-color:  #FCF4FF !important;
 }
+
+.ant-modal-body {
+  max-height: 800px;
+  overflow: auto;
+}
+
+#codeArea {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 999999;
+}
+
+#codeArea > .ant-card-body {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  padding: 0 !important;
+}
+
+#codeArea > .ant-card-head {
+  background-color: #fff !important;
+}
+
+.code-area > .ant-card-body  {
+  height: 100% !important;
+  overflow: auto;
+}
+
+.code-area > .ant-card-body .ReactCodeMirror,.code-area > .ant-card-body .ReactCodeMirror .CodeMirror, .result-area > .ant-card-body > textarea {
+  height: 100% !important;
+}
+
+.code-area > .ant-card-body, .result-area > .ant-card-body {
+  padding: 0 !important;
+}

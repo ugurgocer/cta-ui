@@ -24,13 +24,14 @@ const colButton = {
 
 const fileType = [
     '.jpg',
-    '.png'
+    '.png',
+    '.jpeg'
 ]
 
-const UserUpdateForm = props => {
+const UserDetailForm = props => {
     const { state } = useContext(Localize)
     const [image, setImage] = useState(props.initialValues ? props.initialValues.image : null)
-    let initialValue = { ...props.initialValues.userDetail, ...props.initialValues.userDetail.user }
+    let initialValue = { ...props.initialValues, ...props.initialValues.user }
 
     return (
         <Form
@@ -42,23 +43,17 @@ const UserUpdateForm = props => {
             style={{ width: "100%" }}
             initialValues={initialValue}
         >
-            <Form.Item label={state.translation.fullName} name="fullName" rules={[{ whitespace: true }]} {...col}>
+            <Form.Item label={state.translation.fullName} name="fullName" rules={[{ whitespace: true, required: true }]} {...col}>
                 <Input size="large" />
             </Form.Item>
-            <Form.Item label={state.translation.username} name="username" rules={[{ whitespace: true }]} {...col}>
+            <Form.Item label={state.translation.username} name="username" rules={[{ whitespace: true, required: true }]} {...col}>
                 <Input size="large" />
             </Form.Item>
-            <Form.Item label={state.translation.email} name="email" rules={[{ whitespace: true }]} {...col}>
-                <Input size="large" />
-            </Form.Item>
-            <Form.Item label={state.translation.password} name="password" rules={[{ whitespace: true }]} {...col}>
-                <Input size="large" />
-            </Form.Item>
-            <Form.Item label={state.translation.title} name="title" rules={[{ whitespace: true }]} {...col}>
+            <Form.Item label={state.translation.email} name="email" rules={[{ whitespace: true, required: true }]} {...col}>
                 <Input size="large" />
             </Form.Item>
             <Form.Item label={state.translation.resume} name="resume" rules={[{ whitespace: true }]} {...col}>
-                <Input size="large" />
+                <Input.TextArea size="large" autoSize={{ minRows: 6, maxRows: 6 }}/>
             </Form.Item>
             <Form.Item label={state.translation.website} name="website" rules={[{ whitespace: true }]} {...col}>
                 <Input size="large" />
@@ -123,4 +118,4 @@ const UserUpdateForm = props => {
 
 }
 
-export default UserUpdateForm
+export default UserDetailForm

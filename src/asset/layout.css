@@ -38,10 +38,28 @@
 
 @media (min-width: 1200px){
     #header {
+        width: 90% !important;
+        margin: auto !important;
+    }
+
+    #user > span{
+        width: 100% !important;
+        text-align: right;
+    }
+}
+
+@media (min-width: 1400px){
+    #header {
         width: 80% !important;
         margin: auto !important;
     }
+
+    #user > span{
+        width: 100% !important;
+        text-align: right;
+    }
 }
+
 
 .card-actions, .ant-list-header>span {
     font-weight: 600;
@@ -61,4 +79,14 @@
 .ant-list-items {
     max-height: 500px;
     overflow-y: auto;
+}
+
+.ant-drawer-body .ant-menu{
+    margin-top: 50px;
+    font-size: 18px;
+}
+
+#lastCourses .ant-row, #educators .ant-row{
+    justify-content: center;
+
 }

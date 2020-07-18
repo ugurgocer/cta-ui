@@ -77,6 +77,16 @@ module.exports = {
     'facebook':'Facebook',
     'linkedin':'LinkedIn',
     'youtube':'YouTube',
+    'Completed': 'Tamamlandı',
+    start: 'Başla',
+    replay: 'Tekrar Et',
+    stop: 'Durdur',
+    run: 'Çalıştır',
+    next: 'Sonraki',
+    'Finish Section': 'Bölümü Bitir',
+    'Return to Course': 'Kursa Dön',
+    'Output': 'Çıktı',
+    'No course matched': 'Eşleşen kurs yok',
 
     messages: {
       'Login successful': 'Giriş başarılı',

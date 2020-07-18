@@ -9,7 +9,7 @@ import { MdLibraryBooks } from 'react-icons/md'
 import Report from './EducatorReport'
 
 
-const EDUCATOR_LIST = (
+const EDUCATOR = (
     gql`
         query($username: String!){
             educatorRead(username: $username) {
@@ -45,10 +45,11 @@ const EDUCATOR_LIST = (
 )
 const CourseSections = props => {
     const { state } = useContext(Localize)
-    const { data, loading } = useQuery(EDUCATOR_LIST, { variables: { username: props.match.params.username }, fetchPolicy: "network-only" })
+    const { data, loading } = useQuery(EDUCATOR, { variables: { username: props.match.params.username }, fetchPolicy: "network-only" })
 
     if (loading) return null
     else{
+        console.log(data)
         return (
             <Row gutter={16}>
                 <Col xs={24} sm={24} md={8} lg={6} xl={4} >
@@ -73,7 +74,7 @@ const CourseSections = props => {
                     <List
                         dataSource={data.educatorRead.courses}
                         header={<span
-                                style={{ fontSize: 16, padding: 3, paddingLeft: 16 }}
+                                style={{ fontSize: 16}}
                             >
                             <MdLibraryBooks
                                 size={18}
@@ -81,6 +82,7 @@ const CourseSections = props => {
                             />
                             {state.translation.courses}
                         </span>}
+                        bordered
                         grid={{
                             gutter: 16,
                             xs: 1,
@@ -90,12 +92,17 @@ const CourseSections = props => {
                             xl: 2,
                             xxl: 3
                         }}
+                        style={{
+                            backgroundColor: "#f4f4f4",
+                            borderColor: '#f4f4f4',
+                            marginBottom: 16
+                        }}
                         renderItem={item => (
                             <List.Item>
                                 <Card
-                                    style={{ cursor: "pointer", width: "100%" }}
+                                    style={{ cursor: "pointer", width: "100%", marginTop: 16 }}
                                     bodyStyle={{ padding: 16 }}
-                                    onClick={() => props.history.push(compile('/course/:username')({ username: item.seoLink }))}
+                                    onClick={() => props.history.push(compile('/course/:seoLink')({ seoLink: item.seoLink }))}
                                 >
                                 
                                     <Card.Meta

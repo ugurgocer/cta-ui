@@ -44,10 +44,11 @@ const CourseSections = props => {
                     xl: 6,
                 }}
                 dataSource={data.educatorList.educators}
+                id="educators"
                 renderItem={item => (
-                    <List.Item>
+                    <List.Item style={{ width: "100%" }}>
                     <Card
-                        style={{ width: 300, cursor: "pointer" }}
+                        style={{ width: 200, cursor: "pointer" }}
                         bodyStyle={{ padding: 16 }}
                         cover={
                             <img

@@ -24,7 +24,8 @@ const colButton = {
 
 const fileType = [
     '.jpg',
-    '.png'
+    '.png',
+    '.jpeg'
 ]
 
 const CourseForm = props => {
