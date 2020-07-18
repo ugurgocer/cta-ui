@@ -29,6 +29,7 @@ const EDUCATOR_LIST = (
 )
 
 const CourseSections = props => {
+    const { state } = useContext(Localize)
     const { data, loading } = useQuery(EDUCATOR_LIST, { fetchPolicy: "network-only" })
 
     if (loading) return null
@@ -45,6 +46,7 @@ const CourseSections = props => {
                 }}
                 dataSource={data.educatorList.educators}
                 id="educators"
+                pagination={{ total: data.educatorList.educators.length, showTotal: (total, range) => `${state.translation['Total Educator Count']}: ${total}`, pageSize: 20 }}
                 renderItem={item => (
                     <List.Item style={{ width: "100%" }}>
                     <Card

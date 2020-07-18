@@ -43,6 +43,11 @@ aside {
   top: 81px !important
 }
 
+#user-dropdown {
+  box-shadow: 0 0 1px 1px rgba(20,23,28,.1), 0 0 3px 3px rgba(20,23,28,.1) !important;
+  z-index: 999999;
+}
+
 
 .ant-table-thead .ant-table-cell, .ant-table-thead, .ant-modal-header, .ant-modal-header > .ant-modal-title, .ant-list-header{
   background-color: #5530a1 !important;
@@ -88,6 +93,10 @@ aside {
 
 #codeArea > .ant-card-head {
   background-color: #fff !important;
+}
+
+.home-page-educator .ant-card-head, #home-page-courses .ant-list-header{
+  background-color: #4b8fe0 !important;
 }
 
 .code-area > .ant-card-body  {

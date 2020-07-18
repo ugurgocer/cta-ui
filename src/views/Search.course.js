@@ -55,7 +55,7 @@ const SearchCourse = props => {
                          xl: 5,
                     }}
                     id="lastCourses"
-                    header={`${props.match.params.value} için arama sonuçları`}
+                    header={state.translation['Search result for x pattern'](props.match.params.value)}
                     bordered
                     locale={{ emptyText: (
                          <span>

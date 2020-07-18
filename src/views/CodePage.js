@@ -78,7 +78,6 @@ const EditCourse = props => {
         }
     }
 
-    console.log(props)
     const onSubmit = async values => {
         try{
             if(values.codes){

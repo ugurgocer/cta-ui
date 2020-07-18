@@ -87,6 +87,14 @@ module.exports = {
     'Return to Course': 'Kursa Dön',
     'Output': 'Çıktı',
     'No course matched': 'Eşleşen kurs yok',
+    published: 'Yayında',
+    'Total Course Count': 'Toplam Kurs Sayısı',
+    'Total Educator Count': 'Toplam Eğitmen Sayısı',
+    'Total Document Count': 'Toplam Doküman Sayısı',
+    'Add Field': 'Alan Ekle',
+    'Search result for x pattern': x => `${x} ifadesi için arama sonuçları`,
+    'Educators with the most courses': 'En çok kursa sahip eğitimciler',
+    'Recently added courses': 'Son eklenen kurslar',
 
     messages: {
       'Login successful': 'Giriş başarılı',

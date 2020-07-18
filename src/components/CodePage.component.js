@@ -6,6 +6,7 @@ import ReactHtmlParser from 'react-html-parser'
 import { BsFillBackspaceReverseFill } from 'react-icons/bs'
 import { FaStop, FaCaretRight, FaAngleDoubleRight } from 'react-icons/fa'
 import axios from 'axios'
+import { Link } from 'react-router-dom'
 
 const DocumentForm = props => {
     const { state } = useContext(Localize)
@@ -35,6 +36,7 @@ const DocumentForm = props => {
 
     return (
         <Card id="codeArea"
+            title={<Link to="/"><div className="logo" /></Link>}
             extra={
                 <span>
                     <Button
@@ -55,7 +57,7 @@ const DocumentForm = props => {
                     </Button>
                     <Divider type="vertical" />
                     <Button
-                        disabled={result.result !== "" ? !result.success : true}
+                        disabled={result.result !== "" && value !== "" ? !result.success : true}
                         onClick={() => props.stepOver(result.result, value)}
                         icon={
                             <FaAngleDoubleRight 

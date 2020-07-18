@@ -86,7 +86,7 @@
     font-size: 18px;
 }
 
-#lastCourses .ant-row, #educators .ant-row{
+#lastCourses .ant-row, #educators .ant-row, #home-page-courses .ant-row{
     justify-content: center;
 
 }

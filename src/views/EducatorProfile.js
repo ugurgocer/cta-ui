@@ -4,10 +4,9 @@ import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
 import { compile } from 'path-to-regexp'
 
-import { Card, List, Col, Row, Avatar } from 'antd'
+import { Card, List, Col, Row, Avatar, Statistic } from 'antd'
 import { MdLibraryBooks } from 'react-icons/md'
-import Report from './EducatorReport'
-
+import { FaBookReader, FaFileAlt } from 'react-icons/fa'
 
 const EDUCATOR = (
     gql`
@@ -22,6 +21,10 @@ const EDUCATOR = (
                     uid
                     response
                     status
+                }
+                report {
+                    totalCourse
+                    totalDocument
                 }
                 courses {
                     id
@@ -97,6 +100,7 @@ const CourseSections = props => {
                             borderColor: '#f4f4f4',
                             marginBottom: 16
                         }}
+                        pagination={{ total: data.educatorRead.courses.length, showTotal: (total, range) => `${state.translation['Total Course Count']}: ${total}`, pageSize: 5 }}
                         renderItem={item => (
                             <List.Item>
                                 <Card
@@ -116,7 +120,33 @@ const CourseSections = props => {
                     />
                 </Col>
                 <Col span={24}>
-                    <Report id={data.educatorRead.id} />
+                    <div className="site-statistic-demo-card" >
+                        <Row gutter={50}>
+                            <Col xs={24} lg={12} style={{ marginBottom: 16 }}>
+                                <Card headStyle={{textAlign:'center'}}>
+                                    <Statistic
+                                        style={{ textAlign:'center' }}
+                                        title={state.translation['Number Of Course']}
+                                        value={data.educatorRead.report.totalCourse}
+                                        valueStyle={{ color: '#3f8600' }}
+                                        prefix={<FaBookReader/>}
+                                        headStyle={{textAlign:'center'}}
+                                    />
+                                </Card>
+                            </Col>
+                            <Col xs={24} lg={12}  style={{ marginBottom: 16 }}>
+                                <Card>
+                                    <Statistic
+                                        style={{textAlign:'center'}}
+                                        title={state.translation['Number Of Document']}
+                                        value={data.educatorRead.report.totalDocument}
+                                        valueStyle={{ color: 'blue' }}
+                                        prefix={<FaFileAlt />}
+                                    />
+                                </Card>
+                            </Col>
+                        </Row>
+                    </div>
                 </Col>
             </Row>
         )

@@ -86,6 +86,15 @@ module.exports = {
     'Return to Course': 'Return to Course',
     'Output': 'Output',
     'No course matched': 'No course matched',
+    published: 'Published',
+    'Total Course Count': 'Total Course Count',
+    'Total Educator Count': 'Total Educator Count',
+    'Total Document Count': 'Total Document Count',
+    'Add Field': 'Add Field',
+    'Search result for x pattern': x => `Search result for ${x} pattern`,
+    'Educators with the most courses': 'Educators with the most courses',
+    'Recently added courses': 'Recently added courses',
+
     messages: {
       'Login successful': 'Login successful',
       'Register successful': 'Register successful',

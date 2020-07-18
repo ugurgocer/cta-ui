@@ -96,7 +96,7 @@ const DocumentForm = props => {
                             <AiOutlinePlusCircle
                                 size={18}
                                 style={{ verticalAlign: "middle", marginRight: 8 }}
-                            /> Add field
+                            /> {state.translation['Add Field']}
                             </Button>
                         </Form.Item>
                         </div>

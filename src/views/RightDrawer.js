@@ -128,12 +128,7 @@ const RightDrawer = props => {
     if(loadingQuery) return null
     else
         return (
-            <Drawer
-                placement="right"
-                zIndex={2000}
-                visible={props.rightPanelOpen}
-                onClose={() => props.onRightPanelOpen(false)}
-            >
+            <div id="user-dropdown">
                 <Card
                     style={{ width: "100%" }}
                     bordered={false}
@@ -179,7 +174,7 @@ const RightDrawer = props => {
                 >
                     <UserUpdate onSubmit={onSubmit} modalClose={modalClose} initialValues={data.getUserDetail}/>
                 </Modal>
-            </Drawer>
+            </div>
         )
 }
 

@@ -8,7 +8,7 @@ import { compile } from 'path-to-regexp'
 
 import "moment/min/locales.min"
 
-import { Layout, Menu, Row, Col, Avatar, Drawer } from 'antd'
+import { Layout, Menu, Row, Col, Avatar, Drawer, Dropdown } from 'antd'
 import SearchBox from '../components/SearchBox'
 import { Redirect, Link, Switch, Route } from 'react-router-dom'
 import EducatorPanel from './EducatorPanel'
@@ -18,6 +18,7 @@ import RightDrawer from './RightDrawer'
 import SearchCourse from './Search.course'
 import Educators from './Educators'
 import CoursePage from './UserCoursePage'
+import HomePage from './HomePage'
 
 import { FaChalkboardTeacher, FaRegUserCircle, FaChalkboard } from 'react-icons/fa'
 import { TiThMenu } from 'react-icons/ti'
@@ -63,8 +64,16 @@ const header_layout = {
         sm: 4,
         md: 2,
         lg: 2,
-        xl: 2,
+        xl: 1,
         id: "user"
+    },
+    change_language: {
+        xs: 0,
+        sm: 0,
+        md: 0,
+        lg: 2,
+        xl: 1,
+        id: "change_language"
     }
 }
 
@@ -89,7 +98,7 @@ const TOKEN_READ = (
 )
 
 const Main = props => {
-    const { state } = useContext(Localize)
+    const { state, dispatch } = useContext(Localize)
     const { state: session, dispatch: sessionDispatch } = useContext(Session)
     const { loading, error, data } = useQuery(TOKEN_READ, { fetchPolicy: 'network-only' })
     const [ rightPanelOpen, onRightPanelOpen ] = useState(false) 
@@ -143,13 +152,19 @@ const Main = props => {
                             <SearchBox onSearch={onSearch} style={{ width: "100%", position: "relative" }} />
                         </Col>
                         <Col {...header_layout.user}>
-                            <Avatar shape="square" size="default" style={{ backgroundColor: "#fff" }} icon={<FaRegUserCircle size={32} color="#3d3d3d"/>} onClick={() => onRightPanelOpen(!rightPanelOpen)} />
+                            <Dropdown visible={rightPanelOpen} overlay={<RightDrawer onLogout={() => props.history.push('/login')} {...props} {...{rightPanelOpen, onRightPanelOpen}} />} trigger={['click']}  placement="bottomCenter">
+                                <Avatar shape="square" size="default" style={{ backgroundColor: "#fff" }} icon={<FaRegUserCircle size={32} color="#3d3d3d"/>} onClick={() => onRightPanelOpen(!rightPanelOpen)} />
+                            </Dropdown> 
+                        </Col>
+                        <Col {...header_layout.change_language}>
+                            <Avatar shape="square" size="default" style={{ backgroundColor: "#fff" }} icon={<span style={{ color: "#000", cursor: "pointer" }}>{state.language}</span>} onClick={() => dispatch({ type: 'switchLanguage' })} />
                         </Col>
                     </Row>
                 </Header>
                 <Content className="site-layout" style={{ marginTop: 64, paddingBottom: 65 }} >
                     <div className="site-layout-background" style={{ padding: '30px 50px' }}>
                         <Switch>
+                            <Route exact path="/" component={HomePage} />
                             <Route path="/educator/panel" component={EducatorPanel} />
                             <Route path="/be-educator" component={BeEducator} />
                             <Route path="/search/course/:value" component={SearchCourse} />
@@ -160,12 +175,12 @@ const Main = props => {
                     </div>
                 </Content>
                 <Footer style={{ textAlign: 'center' }}>Code Training App ©2020 Created by Uğur Güçer</Footer>
-                <RightDrawer rightPanelOpen={rightPanelOpen} onRightPanelOpen={onRightPanelOpen} onLogout={() => props.history.push('/login')} {...props}/>
                 <Drawer
                     visible={mobileMenu}
                     onClose={() => openMobileMenu(false)}
                     width="100%"
                 >
+                    <Avatar shape="square" size="default" style={{ backgroundColor: "#fff" }} icon={<span style={{ color: "#000", cursor: "pointer" }}>{state.language}</span>} onClick={() => dispatch({ type: 'switchLanguage' })} />
                     {menu('vertical', () => openMobileMenu(false))}
                 </Drawer>
             </Layout>

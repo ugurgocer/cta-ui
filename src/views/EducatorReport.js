@@ -36,7 +36,7 @@ const EducatorReport = props => {
 
     const filter = {
         and: [
-            { educatorId: { eq: session.educator.id } }
+            { educatorId: { eq: props.isUser ? props.id : session.educator.id } }
         ]
     }
 
@@ -81,7 +81,7 @@ const EducatorReport = props => {
                         </Card>
                     </Col>
                     <Col span={24} style={{ marginBottom: 16 }}>
-                        <List
+                        {!props.isUser && <List
                             grid={{
                                 gutter: 16,
                                 xs: 1,
@@ -115,7 +115,7 @@ const EducatorReport = props => {
                                     </Card>
                                 </List.Item>
                             )}
-                        />
+                        />}
                     </Col>
                 </Row>
             </div>

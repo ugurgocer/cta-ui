@@ -7,11 +7,12 @@ import Session from './../../global/Session'
 import { message, Table } from 'antd'
 import { compile } from 'path-to-regexp'
 import moment from 'moment'
+import { AiOutlineCheckCircle } from 'react-icons/ai'
 
 const COURSE_LIST = (
     gql`
-        query($filter: CourseFilterBase){
-            courseList(filter: $filter){
+        query($filter: CourseFilterBase, $paging: Paging){
+            courseList(filter: $filter, paging: $paging){
                 courses{
                     title
                     description
@@ -21,8 +22,10 @@ const COURSE_LIST = (
                     }
                     educatorId
                     createdAt
+                    isPublished
                     updatedAt
                 }
+                totalCount
             }
         }
     `
@@ -31,6 +34,7 @@ const COURSE_LIST = (
 const CreateCourse = props => {
     const { state: session } = useContext(Session)
     const { state } = useContext(Localize)
+    const [ paging, changePaging ] = useState({ offset: 0, limit: 5 })
 
     const initialFilter = [
         { educatorId: { eq: session.educator.id } }
@@ -38,9 +42,15 @@ const CreateCourse = props => {
 
     const [ filter, setFilter ] = useState(initialFilter)
 
-    const { loading, data } = useQuery(COURSE_LIST, { variables: { filter: { and: filter } }, fetchPolicy: "network-only" })
+    const { loading, data, refetch } = useQuery(COURSE_LIST, { variables: { filter: { and: filter }, paging }, fetchPolicy: "network-only" })
 
     if(loading) return null
+
+    const changePage = pagination => {
+        changePaging({ offset: (pagination.current - 1) * pagination.pageSize, limit: pagination.pageSize  })
+
+        refetch()
+    }
 
     const onRow = (record, rowIndex) => {
         return {
@@ -82,6 +92,13 @@ const CreateCourse = props => {
             key: 'updatedAt',
             dataIndex: 'updatedAt',
             render: value => moment(value).format('DD MMMM YYYY hh:mm')
+        },
+        {
+            title: state.translation.published,
+            key: 'isPublished',
+            dataIndex: 'isPublished',
+            align: 'center',
+            render: value => value ? <AiOutlineCheckCircle size={18} style={{ verticalAlign: "middle" }}/> : ''
         }
     ]
 
@@ -91,7 +108,9 @@ const CreateCourse = props => {
             dataSource={data.courseList.courses}
             onRow={onRow}
             loading={loading}
+            pagination={{ total: data.courseList.totalCount, showTotal: (total, range) => `${state.translation['Total Course Count']}: ${total}`, pageSize: 5, current: (paging.offset / paging.limit) + 1 }}
             rowKey={record => record.seoLink}
+            onChange={(pagination) => changePage(pagination)}
         />
     )
 
