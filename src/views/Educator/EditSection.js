@@ -21,7 +21,7 @@ const EDIT_SECTION = (
     `
 )
 
-const EditCourse = props => {
+const EditSection = props => {
     const [editSection, { loading }] = useMutation(EDIT_SECTION)
     const { state } = useContext(Localize)
 
@@ -52,4 +52,4 @@ const EditCourse = props => {
 
 }
 
-export default EditCourse
+export default EditSection

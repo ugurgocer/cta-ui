@@ -2,11 +2,10 @@ import React, { useContext, useState } from 'react'
 import { useMutation, useQuery } from '@apollo/react-hooks'
 import Session from '../global/Session'
 import gql from 'graphql-tag'
-import { Route, Switch } from 'react-router-dom'
 import Localize from './../global/Localize'
 import UserUpdate from './../components/UserDetail.form'
 
-import { Card, Drawer, Button, Avatar, message, Modal } from 'antd'
+import { Card, Button, Avatar, message, Modal } from 'antd'
 
 const LOGOUT = (
     gql`
@@ -72,17 +71,13 @@ const RightDrawer = props => {
     const { state } = useContext(Localize)
     const [ open, changeOpen ] = useState(false)
  
-    const [ updateMutation, { loadingMutation } ] = useMutation(UPDATE_QUERY)
+    const [ updateMutation ] = useMutation(UPDATE_QUERY)
     const { loading: loadingQuery, data, refetch } = useQuery(READ_QUERY, { variables: { userId: session.userId }, fetchPolicy: "network-only" })
 
     const [logout, { loading }] = useMutation(LOGOUT)
 
     const modalClose = () => {
         props.history.push('/')
-    }
-
-    const openModal = () => {
-        props.history.push('/user/update')
     }
 
     const onSubmit = async values => {

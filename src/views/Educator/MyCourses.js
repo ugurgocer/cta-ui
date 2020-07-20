@@ -4,7 +4,7 @@ import gql from 'graphql-tag'
 import Localize from './../../global/Localize'
 import Session from './../../global/Session'
 
-import { message, Table } from 'antd'
+import { Table } from 'antd'
 import { compile } from 'path-to-regexp'
 import moment from 'moment'
 import { AiOutlineCheckCircle } from 'react-icons/ai'
@@ -31,7 +31,7 @@ const COURSE_LIST = (
     `
 )
 
-const CreateCourse = props => {
+const MyCourses = props => {
     const { state: session } = useContext(Session)
     const { state } = useContext(Localize)
     const [ paging, changePaging ] = useState({ offset: 0, limit: 5 })
@@ -40,7 +40,7 @@ const CreateCourse = props => {
         { educatorId: { eq: session.educator.id } }
     ]
 
-    const [ filter, setFilter ] = useState(initialFilter)
+    const [ filter ] = useState(initialFilter)
 
     const { loading, data, refetch } = useQuery(COURSE_LIST, { variables: { filter: { and: filter }, paging }, fetchPolicy: "network-only" })
 
@@ -116,4 +116,4 @@ const CreateCourse = props => {
 
 }
 
-export default CreateCourse
+export default MyCourses

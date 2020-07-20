@@ -4,7 +4,7 @@ import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
 import { compile } from 'path-to-regexp'
 
-import { Card, List, Divider } from 'antd'
+import { Card, List } from 'antd'
 
 
 const EDUCATOR_LIST = (
@@ -28,7 +28,7 @@ const EDUCATOR_LIST = (
     `
 )
 
-const CourseSections = props => {
+const Educators = props => {
     const { state } = useContext(Localize)
     const { data, loading } = useQuery(EDUCATOR_LIST, { fetchPolicy: "network-only" })
 
@@ -74,5 +74,5 @@ const CourseSections = props => {
 
 }
 
-export default CourseSections
+export default Educators
 

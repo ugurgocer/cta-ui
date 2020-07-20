@@ -25,7 +25,7 @@ const ADD_DOCUMENT = (
     `
 )
 
-const EditCourse = props => {
+const CreateDocument = props => {
     const [createDocument, { loading }] = useMutation(ADD_DOCUMENT)
     const { state } = useContext(Localize)
 
@@ -62,4 +62,4 @@ const EditCourse = props => {
 
 }
 
-export default EditCourse
+export default CreateDocument

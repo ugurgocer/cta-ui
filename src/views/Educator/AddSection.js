@@ -2,7 +2,6 @@ import React, { useContext } from 'react'
 import { useMutation } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
 import Localize from './../../global/Localize'
-import { compile } from 'path-to-regexp'
 
 import { Modal, message } from 'antd'
 import SectionForm from './../../components/Section.form'
@@ -21,7 +20,7 @@ const ADD_SECTION = (
     `
 )
 
-const EditCourse = props => {
+const AddSection = props => {
     const [addSection, { loading }] = useMutation(ADD_SECTION)
     const { state } = useContext(Localize)
 
@@ -52,4 +51,4 @@ const EditCourse = props => {
 
 }
 
-export default EditCourse
+export default AddSection

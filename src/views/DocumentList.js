@@ -42,10 +42,6 @@ const DocumentList = props => {
     const { loading, data } = useQuery(SECTION_READ, { variables: { id: props.sectionId }, fetchPolicy: "network-only" })
     const { state } = useContext(Localize)
 
-    const onClickAction = (key, document_id) => {
-        props.history.push(compile('/educator/panel/course/:seoLink/section/:id/document/:document_id/')({ seoLink: props.match.params.seoLink, id: props.sectionId, document_id })+key)
-    }
-
     if(loading) return null
 
     else if(!data.courseSectionRead){
@@ -101,7 +97,7 @@ const DocumentList = props => {
                                     )}
                                     {!(item.documentUser && item.documentUser.isCompleted) ? state.translation.start : state.translation.replay}
                                 </span>,
-                                ,...(item.documentUser && item.documentUser.isCompleted ? [
+                                ...(item.documentUser && item.documentUser.isCompleted ? [
                                     <span
                                         key="completed"
                                     >

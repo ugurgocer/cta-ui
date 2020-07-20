@@ -2,7 +2,6 @@ import React, { useContext } from 'react'
 import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
 import Localize from './../global/Localize'
-import Session from './../global/Session'
 import moment from 'moment'
 import { compile } from 'path-to-regexp'
 
@@ -48,14 +47,9 @@ const COURSE_READ = (
     `
 )
 
-const Course = props => {
+const UserCoursePage = props => {
     const { loading, data, refetch } = useQuery(COURSE_READ, { variables: { seoLink: props.match.params.seoLink }, fetchPolicy: "network-only" })
     const { state } = useContext(Localize)
-    const { state: session } = useContext(Session)
-
-    const onClickAction = key => {
-        props.history.push(compile('/educator/panel/course/:seoLink/')({ seoLink: props.match.params.seoLink })+key)
-    }
 
     const modalClose = () => {
         refetch()
@@ -145,4 +139,4 @@ const Course = props => {
     }
 }
 
-export default Course
+export default UserCoursePage

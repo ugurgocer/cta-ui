@@ -5,6 +5,7 @@ import { List, Card, message } from 'antd'
 import { compile } from 'path-to-regexp'
 import { FaInbox } from 'react-icons/fa'
 import Localize from '../global/Localize'
+import moment from 'moment'
 
 const COURSE_LIST_QUERY = (
      gql`
@@ -86,10 +87,11 @@ const SearchCourse = props => {
                                         title={item.title}
                                    />
                               </Card>
+                              <span style={{ paddingLeft: 16, fontWeight: 600 }}>{`${state.translation.createdAt}: `}</span>{moment(item.createdAt).format('DD-MM-YYYY')}
                          </List.Item>
                     )}
                />
-          )
+          )    
      }
 }
 

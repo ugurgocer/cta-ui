@@ -40,7 +40,7 @@ const DOCUMENT_READ = (
     `
 )
 
-const EditCourse = props => {
+const EditDocument = props => {
     const [editDocument, { loadingMutation }] = useMutation(EDIT_DOCUMENT)
     const { state } = useContext(Localize)
     const { loading, data } = useQuery(DOCUMENT_READ, { variables: { id: parseInt(props.match.params.document_id) }, fetchPolicy: "network-only" })
@@ -94,4 +94,4 @@ const EditCourse = props => {
     }
 }
 
-export default EditCourse
+export default EditDocument
