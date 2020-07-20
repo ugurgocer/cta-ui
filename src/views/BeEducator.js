@@ -41,7 +41,7 @@ const BE_EDUCATOR = (
             educatorCreate(educator: $educator){
                 name
                 username
-                educatorId
+                id
                 profilePicture{
                     uid
                     url
