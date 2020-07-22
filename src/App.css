@@ -111,3 +111,8 @@ aside {
 .code-area > .ant-card-body, .result-area > .ant-card-body {
   padding: 0 !important;
 }
+
+.document-area .ant-card-body, .result-area .ant-card-body {
+  max-height: calc(100vh - 150px);
+  overflow-y: auto;
+}

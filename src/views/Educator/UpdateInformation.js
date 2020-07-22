@@ -12,7 +12,7 @@ const INFORMATION_UPDATE = (
     gql`
         mutation($educator: EducatorUpdateInput , $id: Int!){
             educatorUpdate(educator: $educator, id:$id) {
-                educatorId
+                id
                 name
                 username
                 description
@@ -45,7 +45,7 @@ const UpdateInformation = props => {
             delete values.profilePicture.xhr
             values.profilePicture = profilePicture
             values = await deleteUnchangedValue(props.educator, values)
-            const result = await educatorUpdate({ variables: { educator: values, id: parseInt(props.educator.educatorId) }})
+            const result = await educatorUpdate({ variables: { educator: values, id: parseInt(props.educator.id) }})
             sessionDispatch({ type: 'login', educator: result.data.educatorUpdate, session })
             message.success({ content: state.translation.messages['Transaction successful'] })
         }catch(err){

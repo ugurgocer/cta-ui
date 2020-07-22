@@ -1,7 +1,7 @@
 const formfields = {
     email: 'Email',
     password: 'Password',
-    fullName: 'Full Name',
+    fullName: 'Name Surname',
     username: 'Username',
     title: 'Title',
     description: 'Description',
@@ -17,7 +17,7 @@ const formfields = {
 
 module.exports = {
     email: 'Email',
-    fullName: 'Full Name',
+    fullName: 'Name Surname',
     username: 'Username',
     password: 'Password',
     login: 'Log In',

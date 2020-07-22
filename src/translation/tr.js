@@ -2,7 +2,7 @@
 const formfields = {
     email: 'E-Posta',
     password: 'Şifre',
-    fullName: 'Tam Ad',
+    fullName: 'Ad Soyad',
     username: 'Kullanıcı Adı',
     title: 'Başlık',
     description: 'Açıklama',
@@ -19,7 +19,7 @@ const formfields = {
 module.exports = {
     email: 'E-Posta',
     password: 'Şifre',
-    fullName: 'Tam Ad',
+    fullName: 'Ad Soyad',
     username: 'Kullanıcı Adı',
     login: 'Giriş Yap', 
     register: 'Kayıt Ol',
