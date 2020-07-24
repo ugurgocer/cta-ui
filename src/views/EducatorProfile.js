@@ -46,7 +46,7 @@ const EDUCATOR = (
         }
     `
 )
-const CourseSections = props => {
+const EducatorProfile = props => {
     const { state } = useContext(Localize)
     const { data, loading } = useQuery(EDUCATOR, { variables: { username: props.match.params.username }, fetchPolicy: "network-only" })
 
@@ -154,5 +154,5 @@ const CourseSections = props => {
 
 }
 
-export default CourseSections
+export default EducatorProfile
 

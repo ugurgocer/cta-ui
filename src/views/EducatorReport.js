@@ -6,6 +6,7 @@ import Session from './../global/Session'
 import { useQuery } from '@apollo/react-hooks'
 import { FaFileAlt, FaBookReader } from 'react-icons/fa'
 import { compile } from 'path-to-regexp'
+import moment from 'moment'
 
 const REPORT_QUERY = (
     gql`
@@ -113,6 +114,7 @@ const EducatorReport = props => {
                                             title={item.title}
                                         />
                                     </Card>
+                                    <span style={{ fontWeight: 400, color:'black' }}>{`${state.translation.createdAt}: `}</span>{moment(item.createdAt).format('DD-MM-YYYY')}
                                 </List.Item>
                             )}
                         />}

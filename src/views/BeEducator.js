@@ -6,34 +6,8 @@ import Session from './../global/Session'
 
 import { Card, message } from 'antd'
 import BeEducatorForm from './../components/BeEducator.form'
-import { Redirect } from 'react-router-dom'
 
 import './../asset/login.css'
-
-const layout = {
-    login: {
-        xs: 24,
-        sm: 24,
-        md: 16,
-        lg: 12,
-        xl: 8,
-    },
-    space: {
-        xs: 0,
-        sm: 0,
-        md: 4,
-        lg: 6,
-        xl: 7,
-    },
-    logo: {
-        xs: 7,
-        sm: 6,
-        md: 6,
-        lg: 4,
-        xl: 3,
-        id: "logo"
-    },
-}
 
 const BE_EDUCATOR = (
     gql`

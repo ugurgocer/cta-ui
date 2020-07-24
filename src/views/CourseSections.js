@@ -3,7 +3,7 @@ import Localize from './../global/Localize'
 import { compile } from 'path-to-regexp'
 import moment from 'moment'
 
-import { List, message } from 'antd'
+import { List } from 'antd'
 import { AiOutlineApartment, AiOutlineFileProtect, AiOutlineCheckCircle } from 'react-icons/ai'
 import { FaInbox } from 'react-icons/fa'
 import { Link } from 'react-router-dom'

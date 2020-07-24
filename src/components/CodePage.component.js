@@ -8,7 +8,7 @@ import { FaStop, FaCaretRight, FaAngleDoubleRight } from 'react-icons/fa'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
 
-const DocumentForm = props => {
+const CodePageComponent = props => {
     const { state } = useContext(Localize)
     const [value, setValue] = useState(props.document.documentUser ? props.document.documentUser.code : "")
     const [result, setResult] = useState({ result: props.document.documentUser ? props.document.documentUser.output : "", success: true })
@@ -144,7 +144,6 @@ const DocumentForm = props => {
                                 value={result.result}
                                 style={{
                                     resize: "none",
-                                    color: "#555",
                                     fontFamily: "Source Code Pro",
                                     fontSize: 18,
                                     color: result.success ? '#555' : '#ff4d4f'
@@ -159,4 +158,4 @@ const DocumentForm = props => {
 
 }
 
-export default DocumentForm
+export default CodePageComponent

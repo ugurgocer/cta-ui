@@ -2,7 +2,7 @@ import React, { useState, useRef} from 'react'
 import JoditEditor from "jodit-react"
 import Parser from 'html-react-parser' 
 
-const Example = ({}) => {
+const TextEditor = ({}) => {
 	const editor = useRef(null)
 	const [content, setContent] = useState('<p></p>')
 	
@@ -23,4 +23,4 @@ const Example = ({}) => {
     )
 }
 
-export default Example
+export default TextEditor

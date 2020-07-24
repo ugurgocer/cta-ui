@@ -5,7 +5,7 @@ import Localize from './../global/Localize'
 import { deleteUnchangedValue } from './../utils/form'
 import { compile } from 'path-to-regexp'
 
-import { Modal, message } from 'antd'
+import { message } from 'antd'
 import CodePageComp from './../components/CodePage.component'
 import { Redirect } from 'react-router-dom'
 
@@ -58,9 +58,9 @@ const DOCUMENT_READ = (
     `
 )
 
-const EditCourse = props => {
+const CodePage = props => {
     const [editDocument, { loadingMutation }] = useMutation(EDIT_DOCUMENT)
-    const [ onComplete, { loading: loading2 }] = useMutation(SET_DOCUMENT_USER)
+    const [ onComplete ] = useMutation(SET_DOCUMENT_USER)
     const { state } = useContext(Localize)
     const { loading, data } = useQuery(DOCUMENT_READ, { variables: { id: parseInt(props.match.params.document_id) }, fetchPolicy: "network-only" })
 
@@ -118,4 +118,4 @@ const EditCourse = props => {
     }
 }
 
-export default EditCourse
+export default CodePage
