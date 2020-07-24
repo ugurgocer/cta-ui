@@ -21,7 +21,6 @@ const UPDATE_QUERY = (
         mutation($userId:Int!, $user:UserDInput, $userDetail:UserDetailInput){
             setUserDetail(userId:$userId , user:$user,  userDetail:$userDetail) {
                 userId
-                title
                 resume
                 website
                 twitter

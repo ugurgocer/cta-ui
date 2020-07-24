@@ -57,6 +57,7 @@ module.exports = {
     section_title: 'Bölüm Başlığı',
     'Edit Course': 'Kurs Düzenle',
     'Edit Section': 'Bölüm Düzenle',
+    'Edit Document': 'Doküman Düzenle',
     'No section added for this course': 'Bu kurs için bölüm eklenmemiş',
     'No document added for this section': 'Bu bölüm için döküman eklenmemiş',
     example_codes: 'Örnek Kodlar',

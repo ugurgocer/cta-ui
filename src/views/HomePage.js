@@ -106,7 +106,7 @@ const HomePage = props => {
                                 xl: 6,
                             }}
                             bordered
-                            dataSource={data.educatorList.educators.sort((a, b) => a.report.totalDocument - b.report.totalDocument).slice(0, 5)}
+                            dataSource={data.educatorList.educators.sort((a, b) => (b.report.totalDocument + b.report.totalCourse) - (a.report.totalDocument + a.report.totalCourse)).slice(0, 5)}
                             id="educators"
                             renderItem={item => (
                                 <List.Item style={{ width: "100%" }}>

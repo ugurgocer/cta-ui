@@ -49,7 +49,7 @@ const EditCourse = props => {
     
     return (
         <Modal
-            title={state.translation['Add a New Section']}
+            title={state.translation.create_document}
             visible
             className="modal-action"
             width="80%"

@@ -57,6 +57,7 @@ module.exports = {
     example_codes: 'Example',
     'Edit Course': 'Edit Course',
     'Edit Section': 'Edit Section',
+    'Edit Document': 'Edit Document',
     create_document: 'Create Document',
     'No section added for this course': 'No section added for this course',
     'No document added for this section': 'No document added for this section',
