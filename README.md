@@ -4,6 +4,10 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 In the project directory, you can run:
 
+## Required
+  [Code Training App](https://github.com/ugrgucer/code-training-app)
+  
+
 ### `yarn start`
 
 Runs the app in the development mode.<br />
